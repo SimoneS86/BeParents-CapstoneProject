@@ -7,6 +7,7 @@ import beParentsApp.utils.Role;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -24,6 +25,7 @@ public class ProfessionalUser extends User {
 	private Profession profession;
 	private String registrationNumber;
 	private String description;
+	@ManyToMany
 	private List<StandardUser> followers;
 
 	public ProfessionalUser(String name, String surname, String email, String password, Profession profession,
