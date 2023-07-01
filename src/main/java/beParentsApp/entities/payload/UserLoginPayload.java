@@ -1,5 +1,9 @@
 package beParentsApp.entities.payload;
 
-public class UserLoginPayload {
+import lombok.Data;
 
+@Data
+public class UserLoginPayload {
+	String email;
+	String password;
 }

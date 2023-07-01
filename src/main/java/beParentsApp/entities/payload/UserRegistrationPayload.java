@@ -6,7 +6,7 @@ import jakarta.validation.constraints.Size;
 import lombok.Data;
 
 @Data
-public class StandardUserRegistrationPayload {
+public class UserRegistrationPayload {
 	@NotNull(message = "The name is required")
 	@Size(min = 3, max = 30, message = "Name must be between 3 and 30 characters")
 	private String name;
@@ -20,7 +20,7 @@ public class StandardUserRegistrationPayload {
 	@NotNull(message = "The password is required")
 	private String password;
 
-	public StandardUserRegistrationPayload(String name, String surname, String email, String password) {
+	public UserRegistrationPayload(String name, String surname, String email, String password) {
 		this.name = name;
 		this.surname = surname;
 		this.email = email;

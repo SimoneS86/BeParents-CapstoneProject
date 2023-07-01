@@ -1,0 +1,5 @@
+package beParentsApp.utils;
+
+public enum Profession {
+	PEDIATRICIAN, NUTRITIONIST, PSYCHOLOGIST, SPEECH_THERAPIST, PHYSIOTHERAPIST, TEACHER,
+}
