@@ -8,6 +8,8 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import beParentsApp.utils.Role;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -17,6 +19,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
+import jakarta.persistence.OneToMany;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -39,9 +42,9 @@ public abstract class User implements UserDetails {
 	private String password;
 	@Enumerated(EnumType.STRING)
 	private Role role;
-//	@OneToMany(mappedBy = "user")
-//	@JsonManagedReference
-//	private List<Reminder> reminders;
+	@OneToMany(mappedBy = "user")
+	@JsonManagedReference
+	private List<Reminder> reminders;
 //	@OneToMany(mappedBy = "user")
 //	@JsonManagedReference
 //	private List<Post> posts;
