@@ -24,8 +24,13 @@ public class SecurityConfig {
 		http.csrf(c -> c.disable());
 
 		http.authorizeHttpRequests(auth -> auth.requestMatchers("/auth/**").permitAll());
-		http.authorizeHttpRequests(auth -> auth.requestMatchers("/users/**").authenticated());
+		http.authorizeHttpRequests(auth -> auth.requestMatchers("/swagger-ui/**").authenticated());
+		http.authorizeHttpRequests(auth -> auth.requestMatchers("/user/**").authenticated());
+		http.authorizeHttpRequests(auth -> auth.requestMatchers("/standardUser/**").authenticated());
+		http.authorizeHttpRequests(auth -> auth.requestMatchers("/professionalUser/**").authenticated());
 		http.authorizeHttpRequests(auth -> auth.requestMatchers("/reminder/**").authenticated());
+		http.authorizeHttpRequests(auth -> auth.requestMatchers("/post/**").authenticated());
+		http.authorizeHttpRequests(auth -> auth.requestMatchers("/comment/**").authenticated());
 
 		http.addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
 

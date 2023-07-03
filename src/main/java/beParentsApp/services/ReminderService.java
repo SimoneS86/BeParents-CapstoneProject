@@ -1,6 +1,12 @@
 package beParentsApp.services;
 
+import java.util.UUID;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -28,14 +34,36 @@ public class ReminderService {
 		return reminderRepo.save(newReminder);
 	}
 
-//	@GetMapping("/{userId}")
-//	public ProfessionalUser getUser(@PathVariable UUID userId) throws Exception {
-//		return professionalUsersService.findById(userId);
-//	}
-//	
-//	@GetMapping("")
-//	public Page<ProfessionalUser> getUsers(@RequestParam(defaultValue = "0") int page,
-//			@RequestParam(defaultValue = "10") int size, @RequestParam(defaultValue = "id") String sortBy) {
-//		return professionalUsersService.findAll(page, size, sortBy);
-//	}
+	public Page<Reminder> findAll(int page, int size, String sortBy) {
+		if (size < 0)
+			size = 0;
+		if (size > 100)
+			size = 100;
+
+		Pageable pageable = PageRequest.of(page, size, Sort.by(sortBy));
+
+		return reminderRepo.findAll(pageable);
+	}
+
+	public Reminder findById(UUID id) throws NotFoundException {
+		return reminderRepo.findById(id).orElseThrow(() -> new NotFoundException("Reminder Notfound"));
+	}
+
+	public Reminder findByIdAndUpdate(UUID id, ReminderPayload rp) throws NotFoundException {
+		Reminder reminderFound = this.findById(id);
+
+		reminderFound.setId(id);
+		reminderFound.setDate(rp.getDate());
+		reminderFound.setContent(rp.getContent());
+		reminderFound
+				.setUser(userRepo.findById(rp.getUserId()).orElseThrow(() -> new NotFoundException("User not found")));
+
+		return reminderRepo.save(reminderFound);
+	}
+
+	public void findByIdAndDelete(UUID id) throws NotFoundException {
+		Reminder reminder = this.findById(id);
+
+		reminderRepo.delete(reminder);
+	}
 }

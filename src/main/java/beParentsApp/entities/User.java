@@ -30,12 +30,13 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString
 @Entity
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+@Inheritance(strategy = InheritanceType.JOINED)
 public abstract class User implements UserDetails {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private UUID id;
+	// foto
 	private String name;
 	private String surname;
 	private String email;
@@ -45,9 +46,9 @@ public abstract class User implements UserDetails {
 	@OneToMany(mappedBy = "user")
 	@JsonManagedReference
 	private List<Reminder> reminders;
-//	@OneToMany(mappedBy = "user")
-//	@JsonManagedReference
-//	private List<Post> posts;
+	@OneToMany(mappedBy = "user")
+	@JsonManagedReference
+	private List<Post> posts;
 
 	public User(String name, String surname, String email, String password) {
 		this.name = name;

@@ -1,6 +1,6 @@
 package beParentsApp.entities;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
@@ -15,40 +15,39 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+@Entity
 @Getter
 @Setter
 @NoArgsConstructor
 @ToString
-@Entity
-public class Reminder {
+public class Comment {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private UUID id;
-	private LocalDate date;
 	private String content;
-//	private boolean notificationTriggered;
-	private boolean completed;
+	private LocalDateTime publicationDate;
+
 	@ManyToOne
 	@JsonBackReference
 	private User user;
 
-	public Reminder(LocalDate date, String content, User user) {
-		this.date = date;
-		this.content = content;
-//		this.notificationTriggered = false;
-		this.completed = false;
-		this.user = user;
-	}
+	@ManyToOne
+	@JsonBackReference
+	private Post post;
 
-	public void setCompleted(boolean completed) {
-		this.completed = completed;
-	}
-
-//	public void checkNotificationTrigger(LocalDate currentDate) {
-//		if (date.equals(currentDate)) {
-//			notificationTriggered = true;
-//			// Esegui azioni aggiuntive quando la notifica viene triggerata
-//			// Ad esempio, invio di notifiche all'utente.
-//		}
+//	public Comment(String content, User user, Post post) {
+//		this.publicationDate = LocalDateTime.now();
+//		this.content = content;
+//		this.user = user;
+//		this.post = post;
+//
 //	}
+
+	public Comment(LocalDateTime publicationDate, String content, User user, Post post) {
+		this.publicationDate = publicationDate;
+		this.content = content;
+		this.user = user;
+		this.post = post;
+
+	}
 }

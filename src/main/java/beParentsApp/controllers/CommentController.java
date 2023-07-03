@@ -17,43 +17,43 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import beParentsApp.entities.ProfessionalUser;
-import beParentsApp.entities.payload.ProfessionalUserRegistrationPayload;
+import beParentsApp.entities.Comment;
+import beParentsApp.entities.payload.CommentPayload;
 import beParentsApp.exceptions.NotFoundException;
-import beParentsApp.services.ProfessionalUserService;
+import beParentsApp.services.CommentService;
 
 @RestController
-@RequestMapping("/professionalUser")
-public class ProfessionalUserController {
+@RequestMapping("/comment")
+public class CommentController {
 	@Autowired
-	private ProfessionalUserService professionalUsersService;
+	private CommentService commentService;
 
 	@PostMapping("")
 	@ResponseStatus(HttpStatus.CREATED)
-	public ProfessionalUser saveUser(@RequestBody @Validated ProfessionalUserRegistrationPayload body) {
-		return professionalUsersService.create(body);
+	public Comment saveComment(@RequestBody @Validated CommentPayload cp) {
+		return commentService.create(cp);
 	}
 
 	@GetMapping("")
-	public Page<ProfessionalUser> getUsers(@RequestParam(defaultValue = "0") int page,
+	public Page<Comment> getComments(@RequestParam(defaultValue = "0") int page,
 			@RequestParam(defaultValue = "10") int size, @RequestParam(defaultValue = "id") String sortBy) {
-		return professionalUsersService.findAll(page, size, sortBy);
+		return commentService.findAll(page, size, sortBy);
 	}
 
-	@GetMapping("/{userId}")
-	public ProfessionalUser getUser(@PathVariable UUID userId) throws Exception {
-		return professionalUsersService.findById(userId);
+	@GetMapping("/{commentId}")
+	public Comment getComment(@PathVariable UUID commentId) throws Exception {
+		return commentService.findById(commentId);
 	}
 
-	@PutMapping("/{userId}")
-	public ProfessionalUser updateUser(@PathVariable UUID userId, @RequestBody ProfessionalUserRegistrationPayload body)
-			throws Exception {
-		return professionalUsersService.findByIdAndUpdate(userId, body);
+	@PutMapping("/{commentId}")
+	public Comment updateComment(@PathVariable UUID commentId, @RequestBody CommentPayload cp) throws Exception {
+		return commentService.findByIdAndUpdate(commentId, cp);
 	}
 
-	@DeleteMapping("/{userId}")
+	@DeleteMapping("/{commentId}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
-	public void deleteUser(@PathVariable UUID userId) throws NotFoundException {
-		professionalUsersService.findByIdAndDelete(userId);
+	public void deleteComment(@PathVariable UUID commentId) throws NotFoundException {
+		commentService.findByIdAndDelete(commentId);
 	}
+
 }
