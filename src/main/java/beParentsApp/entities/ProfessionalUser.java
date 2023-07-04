@@ -2,6 +2,8 @@ package beParentsApp.entities;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import beParentsApp.utils.Profession;
 import beParentsApp.utils.Role;
 import jakarta.persistence.Entity;
@@ -26,6 +28,7 @@ public class ProfessionalUser extends User {
 	private String registrationNumber;
 	private String description;
 	@ManyToMany
+	@JsonIgnore
 	private List<StandardUser> followers;
 
 	public ProfessionalUser(String name, String surname, String email, String password, Profession profession,

@@ -7,6 +7,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import beParentsApp.entities.ProfessionalUser;
@@ -20,6 +21,9 @@ public class ProfessionalUserService {
 
 	@Autowired
 	ProfessionalUserRepository professionalUserRepo;
+
+	@Autowired
+	private PasswordEncoder bcrypt;
 
 	public ProfessionalUser create(ProfessionalUserRegistrationPayload purp) {
 		professionalUserRepo.findByEmail(purp.getEmail()).ifPresent(professionalUser -> {
@@ -51,6 +55,11 @@ public class ProfessionalUserService {
 
 	public ProfessionalUser findByIdAndUpdate(UUID id, ProfessionalUserRegistrationPayload purp)
 			throws NotFoundException {
+		professionalUserRepo.findByEmail(purp.getEmail()).ifPresent(professionalUser -> {
+			throw new BadRequestException("Email " + professionalUser.getEmail() + " already exist!");
+		});
+
+		purp.setPassword(bcrypt.encode(purp.getPassword()));
 		ProfessionalUser professionalUserFound = this.findById(id);
 
 		professionalUserFound.setId(id);

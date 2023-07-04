@@ -1,12 +1,10 @@
 package beParentsApp.controllers;
 
-import java.time.LocalDate;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -58,11 +56,11 @@ public class ReminderController {
 		reminderService.findByIdAndDelete(reminderId);
 	}
 
-	@GetMapping("/findby/date-{date}")
-	public ResponseEntity<Page<Reminder>> getRemindersByDate(@PathVariable LocalDate date) {
-
-		Page<Reminder> reminders = reminderService.findRemindersByDate(date, 0, 20, "id");
-		return ResponseEntity.ok(reminders);
-	}
+//	@GetMapping("/findby/date-{date}")
+//	public ResponseEntity<Page<Reminder>> getRemindersByDateAndUser(@PathVariable LocalDate date) {
+//		User loggedInUser = getLoggedInUser();
+//		Page<Reminder> reminders = reminderService.findRemindersByDateAndUser(date, loggedInUser.getId(), 0, 20, "id");
+//		return ResponseEntity.ok(reminders);
+//	}
 
 }

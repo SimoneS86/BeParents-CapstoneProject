@@ -7,6 +7,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import beParentsApp.entities.StandardUser;
@@ -20,6 +21,9 @@ public class StandardUserService {
 
 	@Autowired
 	StandardUserRepository standardUserRepo;
+
+	@Autowired
+	private PasswordEncoder bcrypt;
 
 	public StandardUser create(StandardUserRegistrationPayload surp) {
 		standardUserRepo.findByEmail(surp.getEmail()).ifPresent(standardUser -> {
@@ -50,6 +54,8 @@ public class StandardUserService {
 	}
 
 	public StandardUser findByIdAndUpdate(UUID id, StandardUserRegistrationPayload surp) throws NotFoundException {
+
+		surp.setPassword(bcrypt.encode(surp.getPassword()));
 		StandardUser standardUserFound = this.findById(id);
 
 		standardUserFound.setId(id);

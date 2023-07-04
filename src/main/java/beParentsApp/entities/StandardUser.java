@@ -2,6 +2,8 @@ package beParentsApp.entities;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import beParentsApp.utils.Role;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToMany;
@@ -19,6 +21,7 @@ import lombok.ToString;
 @Table(name = "standardUser")
 public class StandardUser extends User {
 	@ManyToMany
+	@JsonIgnore
 	private List<ProfessionalUser> followed;
 
 	public StandardUser(String name, String surname, String email, String password) {

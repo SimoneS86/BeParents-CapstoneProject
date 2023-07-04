@@ -59,7 +59,7 @@ public class AuthController {
 			throws NotFoundException {
 
 		User user = userService.findByEmail(body.getEmail());
-		System.out.println(user);
+		System.out.println("********************** " + user.getEmail() + "*********************");
 
 		String plainPW = body.getPassword();
 		String hashedPW = user.getPassword();

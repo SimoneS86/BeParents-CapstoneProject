@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import beParentsApp.entities.Post;
+import beParentsApp.entities.Reminder;
 import beParentsApp.entities.User;
 import beParentsApp.exceptions.NotFoundException;
 import beParentsApp.services.UserService;
@@ -34,6 +36,18 @@ public class UserController {
 	@GetMapping("/{userId}")
 	public User getUser(@PathVariable UUID userId) throws Exception {
 		return userService.findById(userId);
+	}
+
+	@GetMapping("/{userId}/posts")
+	public Page<Post> getPostsByUser(@PathVariable UUID userId, @RequestParam(defaultValue = "0") int page,
+			@RequestParam(defaultValue = "10") int size, @RequestParam(defaultValue = "id") String sortBy) {
+		return userService.findPostsByUserId(userId, page, size, sortBy);
+	}
+
+	@GetMapping("/{userId}/reminders")
+	public Page<Reminder> getRemindersByUser(@PathVariable UUID userId, @RequestParam(defaultValue = "0") int page,
+			@RequestParam(defaultValue = "10") int size, @RequestParam(defaultValue = "id") String sortBy) {
+		return userService.findRemindersByUserId(userId, page, size, sortBy);
 	}
 
 	@DeleteMapping("/{userId}")

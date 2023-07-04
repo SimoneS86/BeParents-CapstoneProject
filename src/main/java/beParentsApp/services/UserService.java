@@ -9,14 +9,24 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import beParentsApp.entities.Post;
+import beParentsApp.entities.Reminder;
 import beParentsApp.entities.User;
 import beParentsApp.exceptions.NotFoundException;
+import beParentsApp.repositories.PostRepository;
+import beParentsApp.repositories.ReminderRepository;
 import beParentsApp.repositories.UserRepository;
 
 @Service
 public class UserService {
 	@Autowired
 	private UserRepository usersRepo;
+
+	@Autowired
+	private PostRepository postRepo;
+
+	@Autowired
+	private ReminderRepository reminderRepo;
 
 	public Page<User> findAll(int page, int size, String sortBy) {
 		if (size < 0)
@@ -27,6 +37,28 @@ public class UserService {
 		Pageable pageable = PageRequest.of(page, size, Sort.by(sortBy));
 
 		return usersRepo.findAll(pageable);
+	}
+
+	public Page<Post> findPostsByUserId(UUID userId, int page, int size, String sortBy) {
+		if (size < 0)
+			size = 0;
+		if (size > 100)
+			size = 100;
+
+		Pageable pageable = PageRequest.of(page, size, Sort.by(sortBy));
+
+		return postRepo.findByUserId(userId, pageable);
+	}
+
+	public Page<Reminder> findRemindersByUserId(UUID userId, int page, int size, String sortBy) {
+		if (size < 0)
+			size = 0;
+		if (size > 100)
+			size = 100;
+
+		Pageable pageable = PageRequest.of(page, size, Sort.by(sortBy));
+
+		return reminderRepo.findByUserId(userId, pageable);
 	}
 
 	public User findById(UUID id) throws NotFoundException {

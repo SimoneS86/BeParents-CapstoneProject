@@ -8,7 +8,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import beParentsApp.utils.Role;
 import jakarta.persistence.Entity;
@@ -23,12 +23,10 @@ import jakarta.persistence.OneToMany;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 
 @Getter
 @Setter
 @NoArgsConstructor
-@ToString
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 public abstract class User implements UserDetails {
@@ -40,14 +38,15 @@ public abstract class User implements UserDetails {
 	private String name;
 	private String surname;
 	private String email;
+	@JsonIgnore
 	private String password;
 	@Enumerated(EnumType.STRING)
 	private Role role;
 	@OneToMany(mappedBy = "user")
-	@JsonManagedReference
+	@JsonIgnore
 	private List<Reminder> reminders;
 	@OneToMany(mappedBy = "user")
-	@JsonManagedReference
+	@JsonIgnore
 	private List<Post> posts;
 
 	public User(String name, String surname, String email, String password) {
@@ -99,6 +98,12 @@ public abstract class User implements UserDetails {
 	public String getPassword() {
 		// TODO Auto-generated method stub
 		return this.password;
+	}
+
+	@Override
+	public String toString() {
+		return "User{" + "id=" + id + ", name='" + name + '\'' + ", surname='" + surname + '\'' + ", email='" + email
+				+ '\'' + ", password='" + password + '\'' + ", role=" + role + '}';
 	}
 
 }
