@@ -1,5 +1,6 @@
 package beParentsApp.services;
 
+import java.time.LocalDate;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -65,5 +66,15 @@ public class ReminderService {
 		Reminder reminder = this.findById(id);
 
 		reminderRepo.delete(reminder);
+	}
+
+	// FILTRI AGGIUNTIVI
+	public Page<Reminder> findRemindersByDate(LocalDate date, int page, int size, String sortBy) {
+		if (date != null) {
+			Pageable pageable = PageRequest.of(page, size, Sort.by(sortBy));
+			return reminderRepo.findRemindersByDate(date, pageable);
+		} else {
+			return Page.empty();
+		}
 	}
 }

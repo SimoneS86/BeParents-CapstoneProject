@@ -1,5 +1,6 @@
 package beParentsApp.services;
 
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,6 +54,7 @@ public class PostService {
 		Post postFound = this.findById(id);
 
 		postFound.setId(id);
+		postFound.setLastUpdate(LocalDateTime.now());
 		postFound.setPublicationDate(pp.getPublicationDate());
 		postFound.setContent(pp.getContent());
 		postFound.setUser(userRepo.findById(pp.getUserId()).orElseThrow(() -> new NotFoundException("User not found")));

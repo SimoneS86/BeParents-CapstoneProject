@@ -23,7 +23,7 @@ import beParentsApp.exceptions.NotFoundException;
 import beParentsApp.services.StandardUserService;
 
 @RestController
-@RequestMapping("/standardUser")
+@RequestMapping("/api/standardUser")
 public class StandardUserController {
 	@Autowired
 	private StandardUserService standardUsersService;

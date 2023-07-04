@@ -23,7 +23,7 @@ import beParentsApp.exceptions.NotFoundException;
 import beParentsApp.services.PostService;
 
 @RestController
-@RequestMapping("/post")
+@RequestMapping("/api/post")
 public class PostController {
 	@Autowired
 	private PostService postService;

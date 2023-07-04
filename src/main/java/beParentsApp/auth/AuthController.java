@@ -24,7 +24,7 @@ import beParentsApp.services.StandardUserService;
 import beParentsApp.services.UserService;
 
 @RestController
-@RequestMapping("/auth")
+@RequestMapping("/api/auth")
 public class AuthController {
 
 	@Autowired

@@ -31,6 +31,7 @@ public class Post {
 	private UUID id;
 	private String content;
 	private LocalDateTime publicationDate;
+	private LocalDateTime lastUpdate;
 	@ManyToOne
 	@JsonBackReference
 	private User user;
@@ -47,6 +48,7 @@ public class Post {
 
 	public Post(LocalDateTime publicationDate, String content, User user) {
 		this.publicationDate = publicationDate;
+		this.lastUpdate = LocalDateTime.now();
 		this.content = content;
 		this.comments = new ArrayList<>();
 		this.user = user;

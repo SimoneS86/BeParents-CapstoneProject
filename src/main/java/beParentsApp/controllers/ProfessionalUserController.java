@@ -23,7 +23,7 @@ import beParentsApp.exceptions.NotFoundException;
 import beParentsApp.services.ProfessionalUserService;
 
 @RestController
-@RequestMapping("/professionalUser")
+@RequestMapping("/api/professionalUser")
 public class ProfessionalUserController {
 	@Autowired
 	private ProfessionalUserService professionalUsersService;

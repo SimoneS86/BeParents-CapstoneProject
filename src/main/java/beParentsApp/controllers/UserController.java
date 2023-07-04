@@ -19,7 +19,7 @@ import beParentsApp.exceptions.NotFoundException;
 import beParentsApp.services.UserService;
 
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/api/user")
 @PreAuthorize("hasAuthority('ADMIN') or hasAuthority('STANDARD') or hasAuthority('PROFESSIONAL')")
 public class UserController {
 	@Autowired

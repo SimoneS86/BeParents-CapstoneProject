@@ -1,10 +1,12 @@
 package beParentsApp.controllers;
 
+import java.time.LocalDate;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,7 +25,7 @@ import beParentsApp.exceptions.NotFoundException;
 import beParentsApp.services.ReminderService;
 
 @RestController
-@RequestMapping("/reminder")
+@RequestMapping("/api/reminder")
 public class ReminderController {
 	@Autowired
 	private ReminderService reminderService;
@@ -54,6 +56,13 @@ public class ReminderController {
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void deleteReminder(@PathVariable UUID reminderId) throws NotFoundException {
 		reminderService.findByIdAndDelete(reminderId);
+	}
+
+	@GetMapping("/findby/date-{date}")
+	public ResponseEntity<Page<Reminder>> getRemindersByDate(@PathVariable LocalDate date) {
+
+		Page<Reminder> reminders = reminderService.findRemindersByDate(date, 0, 20, "id");
+		return ResponseEntity.ok(reminders);
 	}
 
 }

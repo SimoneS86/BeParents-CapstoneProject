@@ -23,14 +23,14 @@ public class SecurityConfig {
 
 		http.csrf(c -> c.disable());
 
-		http.authorizeHttpRequests(auth -> auth.requestMatchers("/auth/**").permitAll());
+		http.authorizeHttpRequests(auth -> auth.requestMatchers("/api/auth/**").permitAll());
 		http.authorizeHttpRequests(auth -> auth.requestMatchers("/swagger-ui/**").authenticated());
-		http.authorizeHttpRequests(auth -> auth.requestMatchers("/user/**").authenticated());
-		http.authorizeHttpRequests(auth -> auth.requestMatchers("/standardUser/**").authenticated());
-		http.authorizeHttpRequests(auth -> auth.requestMatchers("/professionalUser/**").authenticated());
-		http.authorizeHttpRequests(auth -> auth.requestMatchers("/reminder/**").authenticated());
-		http.authorizeHttpRequests(auth -> auth.requestMatchers("/post/**").authenticated());
-		http.authorizeHttpRequests(auth -> auth.requestMatchers("/comment/**").authenticated());
+		http.authorizeHttpRequests(auth -> auth.requestMatchers("/api/user/**").authenticated());
+		http.authorizeHttpRequests(auth -> auth.requestMatchers("/api/standardUser/**").authenticated());
+		http.authorizeHttpRequests(auth -> auth.requestMatchers("/api/professionalUser/**").authenticated());
+		http.authorizeHttpRequests(auth -> auth.requestMatchers("/api/reminder/**").authenticated());
+		http.authorizeHttpRequests(auth -> auth.requestMatchers("/api/post/**").authenticated());
+		http.authorizeHttpRequests(auth -> auth.requestMatchers("/api/comment/**").authenticated());
 
 		http.addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
 
