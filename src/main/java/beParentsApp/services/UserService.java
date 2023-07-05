@@ -61,6 +61,17 @@ public class UserService {
 		return reminderRepo.findByUserId(userId, pageable);
 	}
 
+//	public Page<Post> findPostsByRole(Role role, int page, int size, String sortBy) {
+//		if (size < 0)
+//			size = 0;
+//		if (size > 100)
+//			size = 100;
+//
+//		Pageable pageable = PageRequest.of(page, size, Sort.by(sortBy));
+//
+//		return postRepo.findByRole(role, pageable);
+//	}
+
 	public User findById(UUID id) throws NotFoundException {
 		return usersRepo.findById(id).orElseThrow(() -> new NotFoundException("User Notfound"));
 	}

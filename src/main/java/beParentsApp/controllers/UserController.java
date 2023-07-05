@@ -50,6 +50,12 @@ public class UserController {
 		return userService.findRemindersByUserId(userId, page, size, sortBy);
 	}
 
+//	@GetMapping("/{role}/posts")
+//	public Page<Post> getPostsByRole(@PathVariable Role role, @RequestParam(defaultValue = "0") int page,
+//			@RequestParam(defaultValue = "10") int size, @RequestParam(defaultValue = "id") String sortBy) {
+//		return userService.findPostsByRole(role, page, size, sortBy);
+//	}
+
 	@DeleteMapping("/{userId}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void deleteUser(@PathVariable UUID userId) throws NotFoundException {

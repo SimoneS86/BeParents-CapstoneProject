@@ -46,6 +46,17 @@ public class PostService {
 		return postRepo.findAll(pageable);
 	}
 
+	public Page<Post> findByProfessionalUser(int page, int size, String sortBy) {
+		if (size < 0)
+			size = 0;
+		if (size > 100)
+			size = 100;
+
+		Pageable pageable = PageRequest.of(page, size, Sort.by(sortBy));
+
+		return postRepo.findByProfessionalUser(pageable);
+	}
+
 	public Post findById(UUID id) throws NotFoundException {
 		return postRepo.findById(id).orElseThrow(() -> new NotFoundException("Post Notfound"));
 	}

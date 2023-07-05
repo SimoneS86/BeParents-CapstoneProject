@@ -24,7 +24,8 @@ public class SecurityConfig {
 		http.csrf(c -> c.disable());
 
 		http.authorizeHttpRequests(auth -> auth.requestMatchers("/api/auth/**").permitAll());
-		http.authorizeHttpRequests(auth -> auth.requestMatchers("/swagger-ui/**").authenticated());
+		http.authorizeHttpRequests(auth -> auth.requestMatchers("/swagger-ui/**").permitAll());
+		http.authorizeHttpRequests(auth -> auth.requestMatchers("/api-docs/**").permitAll());
 		http.authorizeHttpRequests(auth -> auth.requestMatchers("/api/user/**").authenticated());
 		http.authorizeHttpRequests(auth -> auth.requestMatchers("/api/standardUser/**").authenticated());
 		http.authorizeHttpRequests(auth -> auth.requestMatchers("/api/professionalUser/**").authenticated());

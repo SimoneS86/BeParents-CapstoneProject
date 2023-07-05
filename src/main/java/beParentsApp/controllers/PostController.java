@@ -40,6 +40,12 @@ public class PostController {
 		return postService.findAll(page, size, sortBy);
 	}
 
+	@GetMapping("/professionalUser")
+	public Page<Post> getByProfessionalUser(@RequestParam(defaultValue = "0") int page,
+			@RequestParam(defaultValue = "10") int size, @RequestParam(defaultValue = "id") String sortBy) {
+		return postService.findByProfessionalUser(page, size, sortBy);
+	}
+
 	@GetMapping("/{postId}")
 	public Post getPost(@PathVariable UUID postId) throws Exception {
 		return postService.findById(postId);

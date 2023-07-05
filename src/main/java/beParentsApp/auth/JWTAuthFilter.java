@@ -58,7 +58,17 @@ public class JWTAuthFilter extends OncePerRequestFilter {
 	// Per evitare che il filtro venga eseguito per OGNI richiesta
 	@Override
 	protected boolean shouldNotFilter(HttpServletRequest request) {
-		return new AntPathMatcher().match("/api/auth/**", request.getServletPath());
+		String[] patterns = { "/api/auth/**", "/swagger-ui/**", "/api-docs/**" };
+		AntPathMatcher matcher = new AntPathMatcher();
+		boolean match = false;
+		for (String pattern : patterns) {
+			if (matcher.match(pattern, request.getServletPath())) {
+				match = true;
+				break;
+			}
+		}
+
+		return match;
 	}
 
 }
