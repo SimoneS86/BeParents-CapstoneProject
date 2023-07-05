@@ -14,10 +14,7 @@ import beParentsApp.entities.Post;
 public interface PostRepository extends JpaRepository<Post, UUID> {
 	Page<Post> findByUserId(UUID userID, Pageable pageable);
 
-//	@Query("SELECT p FROM Post p JOIN p.user u WHERE u.role = 'PROFESSIONAL'")
-//	Page<Post> findByProfessionalUser(Pageable pageable);
-
-	@Query("SELECT p FROM Post p JOIN p.user u WHERE TYPE(u) = ProfessionalUser")
+	@Query("SELECT p FROM Post p JOIN p.user u WHERE TYPE(u) = ProfessionalUser ORDER BY p.lastUpdate DESC")
 	Page<Post> findByProfessionalUser(Pageable pageable);
 
 }

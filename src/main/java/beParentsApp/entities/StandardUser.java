@@ -26,7 +26,6 @@ public class StandardUser extends User {
 
 	public StandardUser(String name, String surname, String email, String password) {
 		super(name, surname, email, password);
-//		this.followed = new ArrayList<>();
 		setRole(Role.STANDARD);
 	}
 

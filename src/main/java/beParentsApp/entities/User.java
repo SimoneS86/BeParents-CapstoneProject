@@ -55,8 +55,6 @@ public abstract class User implements UserDetails {
 		this.email = email;
 		this.password = password;
 		this.role = null;
-//		this.reminders = new ArrayList<>();
-//		this.posts = new ArrayList<>();
 	}
 
 	@Override

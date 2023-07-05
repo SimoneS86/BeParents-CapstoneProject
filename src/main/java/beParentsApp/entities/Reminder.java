@@ -26,7 +26,6 @@ public class Reminder {
 	private UUID id;
 	private LocalDate date;
 	private String content;
-//	private boolean notificationTriggered;
 	private boolean completed;
 	@ManyToOne
 	private User user;
@@ -34,7 +33,6 @@ public class Reminder {
 	public Reminder(LocalDate date, String content, User user) {
 		this.date = date;
 		this.content = content;
-//		this.notificationTriggered = false;
 		this.completed = false;
 		this.user = user;
 	}
@@ -43,11 +41,4 @@ public class Reminder {
 		this.completed = completed;
 	}
 
-//	public void checkNotificationTrigger(LocalDate currentDate) {
-//		if (date.equals(currentDate)) {
-//			notificationTriggered = true;
-//			// Esegui azioni aggiuntive quando la notifica viene triggerata
-//			// Ad esempio, invio di notifiche all'utente.
-//		}
-//	}
 }

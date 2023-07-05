@@ -37,13 +37,6 @@ public class Post {
 	@JsonManagedReference
 	private List<Comment> comments;
 
-//	public Post(String content, User user) {
-//		this.publicationDate = LocalDateTime.now();
-//		this.content = content;
-//		this.comments = new ArrayList<>();
-//		this.user = user;
-//	}
-
 	public Post(LocalDateTime publicationDate, String content, User user) {
 		this.publicationDate = publicationDate;
 		this.lastUpdate = LocalDateTime.now();

@@ -37,14 +37,6 @@ public class ProfessionalUser extends User {
 		this.profession = profession;
 		this.registrationNumber = registrationNumber;
 		this.description = description;
-//		this.followers = new ArrayList<>();
 		setRole(Role.PROFESSIONAL);
 	}
-
-//	public void followUser(StandardUser standardUser) {
-//		if (!followers.contains(standardUser)) {
-//			followers.add(standardUser);
-//			standardUser.getFollowed().add(this);
-//		}
-//	}
 }

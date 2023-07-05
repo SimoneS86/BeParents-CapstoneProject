@@ -41,7 +41,7 @@ public class PostService {
 		if (size > 100)
 			size = 100;
 
-		Pageable pageable = PageRequest.of(page, size, Sort.by(sortBy));
+		Pageable pageable = PageRequest.of(page, size, Sort.by(sortBy).descending().and(Sort.by("lastUpdate")));
 
 		return postRepo.findAll(pageable);
 	}
