@@ -63,6 +63,7 @@ public class JWTAuthFilter extends OncePerRequestFilter {
 		boolean match = false;
 		for (String pattern : patterns) {
 			if (matcher.match(pattern, request.getServletPath())) {
+				logger.info(request.getRequestURI());
 				match = true;
 				break;
 			}
@@ -70,5 +71,12 @@ public class JWTAuthFilter extends OncePerRequestFilter {
 
 		return match;
 	}
+
+//	@Override
+//	protected boolean shouldNotFilter(HttpServletRequest request) {
+//		return new AntPathMatcher().match("/auth/**", request.getServletPath())
+//				|| new AntPathMatcher().match("/swagger-ui/**", request.getServletPath());
+//
+//	}
 
 }
