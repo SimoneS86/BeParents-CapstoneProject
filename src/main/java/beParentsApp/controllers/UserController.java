@@ -56,7 +56,7 @@ public class UserController {
 			@RequestParam(required = false) LocalDate date, @RequestParam(defaultValue = "0") int page,
 			@RequestParam(defaultValue = "10") int size, @RequestParam(defaultValue = "id") String sortBy) {
 		if (date == null) {
-			// Se la data non viene passata, utilizza la LocalDate.now()
+			// Se la data non viene passata, utilizza la LocalDate.now().
 			date = LocalDate.now();
 		}
 		return userService.findRemindersByUserIdAndDate(userId, date, page, size, sortBy);
