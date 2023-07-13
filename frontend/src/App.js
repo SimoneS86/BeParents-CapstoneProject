@@ -7,18 +7,38 @@ import Login from "./Components/User/Login";
 import Signup from "./Components/User/Signup";
 import ProfessionalSignup from "./Components/User/Professional";
 import HomePage from "./Components/Home/Index";
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { getPosts, getPostsById } from "./redux/actions/post";
+import { BrowserRouter } from "react-router-dom";
+import { getReminders } from "./redux/actions/reminder";
 
 function App() {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getPosts());
+  }, []);
+
+  useEffect(() => {
+    dispatch(getPostsById());
+  }, []);
+
+  useEffect(() => {
+    dispatch(getReminders());
+  }, []);
+
   return (
-    <Routes>
-      <Route path="/" element={<Home />}>
-        <Route path="" element={<HomePage />}/>
-        <Route path="profile" element={<Profile />} />
-        <Route path="login" element={<Login />} />
-        <Route path="signup" element={<Signup />} />
-        <Route path="professional-signup" element={<ProfessionalSignup />} />
-      </Route>
-    </Routes>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />}>
+          <Route path="" element={<HomePage />} />
+          <Route path="profile" element={<Profile />} />
+          <Route path="login" element={<Login />} />
+          <Route path="signup" element={<Signup />} />
+          <Route path="professional-signup" element={<ProfessionalSignup />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
 

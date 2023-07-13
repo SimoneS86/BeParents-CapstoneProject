@@ -2,9 +2,12 @@ import React, { useState } from "react";
 import { Form, Button, Container } from "react-bootstrap";
 import profile from "./../../img/profile.jpg";
 import "./Home.css";
+import { useSelector } from "react-redux";
+import Post from "./Post";
 
 const HomePage = () => {
   const [searchTerm, setSearchTerm] = useState("");
+  const posts = useSelector((state) => state.posts);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -21,42 +24,13 @@ const HomePage = () => {
           className="p-3 text-white border border-primary bg-transparent opacity-0.05"
           onChange={(e) => setSearchTerm(e.target.value)}
         />
-        <Button variant="primary" className=" bg-transparent p-3 mr-2" type="submit">
+        <Button variant="primary" className=" bg-transparent p-3 ms-2" type="submit">
           Search
         </Button>
       </Form>
 
-      <Container className="userContainer">
-        <div className="row">
-          <div className="left">
-            <img
-              className="thumbnail-image"
-              style={{ width: "55px", height: "55px", borderRadius: "50%" }}
-              src={profile}
-              alt="user pic"
-            />
-            <span>
-              <h3>Full Name here</h3>
-              <p>Profession</p>
-            </span>
-          </div>
-          <div className="right">
-            <h3>Publication Date</h3>
-            <p>Last Update</p>
-          </div>
-        </div>
-        <Container>
-          <p>
-            loremLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
-            industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
-            scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into
-            electronic typesetting, remaining essentially unchanged.
-          </p>
-          <br></br>
-          <Button className=" bg-transparent ">Addds Comments</Button>
-          <Button className=" bg-transparent">Show Comments</Button>
-        </Container>
-      </Container>
+      {posts.content && posts.content.map((post) => <Post key={post.id} post={post} />)}
+
       <br></br>
       <Container className="userContainer">
         {/* post 1 here ppppp======== */}

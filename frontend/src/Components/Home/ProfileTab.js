@@ -3,11 +3,15 @@ import { Tab, Nav, Form, Button, Container } from "react-bootstrap";
 import profile from "./../../img/profile.jpg";
 import { AiOutlineEdit } from "react-icons/ai";
 import { MdDeleteOutline } from "react-icons/md";
+import { useSelector } from "react-redux";
+import Reminder from "./Reminder";
 
 const MyTabs = () => {
   const [activeTab, setActiveTab] = useState("tab1");
   const [searchTerm, setSearchTerm] = useState("");
   const [isChecked, setIsChecked] = useState(false);
+  const reminders = useSelector((state) => state.reminders);
+  const posts = useSelector((state) => state.posts);
 
   const handleCheckboxChange = (e) => {
     setIsChecked(e.target.checked);
@@ -53,8 +57,8 @@ const MyTabs = () => {
             </Button>
           </Form>
           {/* post container here ========= */}
-
-          <Container className="userContainer mt-5">
+          {posts.content && posts.content.map((post) => <Reminder key={post.id} reminder={post} />)}
+          {/* <Container className="userContainer mt-5">
             <div className="row">
               <div className="left">
                 <img
@@ -245,195 +249,13 @@ const MyTabs = () => {
                 </Button>
               </div>
             </Container>
-          </Container>
+          </Container> */}
         </Tab.Pane>
         {/* tab 2 content here ========= */}
 
         <Tab.Pane eventKey="tab2">
           <Button className=" bg-transparent ">ADD REMINDER</Button>
-          <Container className="userContainer mt-5">
-            <div className="row" style={{ marginBottom: "0px!important" }}>
-              <div className="left">
-                <span>
-                  <p>12/12/2023</p>
-                </span>
-              </div>
-              <div className="right">
-                <Form>
-                  <Form.Check
-                    style={{ color: "red!important" }}
-                    type="checkbox"
-                    id="myCheckbox"
-                    checked={isChecked}
-                    onChange={handleCheckboxChange}
-                  />
-                </Form>
-              </div>
-            </div>
-            <Container>
-              <p>
-                loremLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
-                industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
-                scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap
-                into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the
-                release of Letraset sheets containing Lorem Ipsum passage.
-              </p>
-              <br></br>
-              <div
-                style={{
-                  margin: "0px",
-                  display: "flex",
-                  alignItems: "center",
-                }}>
-                <Button
-                  className=" bg-transparent "
-                  style={{
-                    borderRadius: "50%",
-                    height: "50px",
-                    width: "50px",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                  }}>
-                  <AiOutlineEdit style={{ fontSize: "20px" }} />
-                </Button>
-                <Button
-                  className=" bg-transparent "
-                  style={{
-                    borderRadius: "50%",
-                    height: "50px",
-                    width: "50px",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                  }}>
-                  <MdDeleteOutline style={{ fontSize: "20px" }} />
-                </Button>
-              </div>
-            </Container>
-          </Container>
-          <Container className="userContainer mt-5">
-            <div className="row" style={{ marginBottom: "0px!important" }}>
-              <div className="left">
-                <span>
-                  <p>12/12/2023</p>
-                </span>
-              </div>
-              <div className="right">
-                <Form>
-                  <Form.Check
-                    style={{ color: "red!important" }}
-                    type="checkbox"
-                    id="myCheckbox"
-                    checked={isChecked}
-                    onChange={handleCheckboxChange}
-                  />
-                </Form>
-              </div>
-            </div>
-            <Container>
-              <p>
-                loremLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
-                industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
-                scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap
-                into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the
-                release of Letraset sheets containing Lorem Ipsum passage.
-              </p>
-              <br></br>
-              <div
-                style={{
-                  margin: "0px",
-                  display: "flex",
-                  alignItems: "center",
-                }}>
-                <Button
-                  className=" bg-transparent "
-                  style={{
-                    borderRadius: "50%",
-                    height: "50px",
-                    width: "50px",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                  }}>
-                  <AiOutlineEdit style={{ fontSize: "20px" }} />
-                </Button>
-                <Button
-                  className=" bg-transparent "
-                  style={{
-                    borderRadius: "50%",
-                    height: "50px",
-                    width: "50px",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                  }}>
-                  <MdDeleteOutline style={{ fontSize: "20px" }} />
-                </Button>
-              </div>
-            </Container>
-          </Container>
-          <Container className="userContainer mt-5">
-            <div className="row" style={{ marginBottom: "0px!important" }}>
-              <div className="left">
-                <span>
-                  <p>12/12/2023</p>
-                </span>
-              </div>
-              <div className="right">
-                <Form>
-                  <Form.Check
-                    style={{ color: "red!important" }}
-                    type="checkbox"
-                    id="myCheckbox"
-                    checked={isChecked}
-                    onChange={handleCheckboxChange}
-                  />
-                </Form>
-              </div>
-            </div>
-            <Container>
-              <p>
-                loremLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
-                industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
-                scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap
-                into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the
-                release of Letraset sheets containing Lorem Ipsum passage.
-              </p>
-              <br></br>
-              <div
-                style={{
-                  margin: "0px",
-                  display: "flex",
-                  alignItems: "center",
-                }}>
-                <Button
-                  className=" bg-transparent "
-                  style={{
-                    borderRadius: "50%",
-                    height: "50px",
-                    width: "50px",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                  }}>
-                  <AiOutlineEdit style={{ fontSize: "20px" }} />
-                </Button>
-                <Button
-                  className=" bg-transparent "
-                  style={{
-                    borderRadius: "50%",
-                    height: "50px",
-                    width: "50px",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                  }}>
-                  <MdDeleteOutline style={{ fontSize: "20px" }} />
-                </Button>
-              </div>
-            </Container>
-          </Container>
+          {reminders.content && reminders.content.map((reminder) => <Reminder key={reminder.id} reminder={reminder} />)}
         </Tab.Pane>
 
         {/* tab 3 content here ========= */}

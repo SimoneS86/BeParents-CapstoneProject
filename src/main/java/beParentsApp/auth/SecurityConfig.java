@@ -24,7 +24,7 @@ public class SecurityConfig {
 
 	@Bean
 	SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-		http.cors(c -> c.disable());
+//		http.cors(c -> c.disable());
 
 		http.csrf(c -> c.disable());
 
@@ -39,7 +39,7 @@ public class SecurityConfig {
 		http.authorizeHttpRequests(auth -> auth.requestMatchers("/api/comment/**").authenticated());
 
 		http.addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
-//		http.addFilterBefore(corsFilter, JWTAuthFilter.class);
+		http.addFilterBefore(corsFilter, JWTAuthFilter.class);
 		http.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
 
 		return http.build();
