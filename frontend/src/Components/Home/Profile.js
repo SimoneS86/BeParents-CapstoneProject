@@ -1,4 +1,4 @@
-import profile from "./../../img/profile.png";
+import profile from "./../../img/profile.jpg";
 import { Button, Container } from "react-bootstrap";
 import { SlUserFollow } from "react-icons/sl";
 import { AiOutlineEdit } from "react-icons/ai";
@@ -25,10 +25,9 @@ const Profile = () => {
         </div>
         <Container>
           <p>
-            loremLorem Ipsum is simply dummy text of the printing and
-            typesetting industry. Lorem Ipsum has been the industry's standard
-            dummy text ever since the 1500s, when an unknown printer took a
-            galley of type and scrambled it to make a type specimen book.
+            loremLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+            industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
+            scrambled it to make a type specimen book.
           </p>
           <br></br>
           <div
@@ -36,10 +35,9 @@ const Profile = () => {
               margin: "0px",
               display: "flex",
               alignItems: "center",
-            }}
-          >
+            }}>
             <Button
-            className=" bg-transparent "
+              className=" bg-transparent "
               style={{
                 borderRadius: "50%",
                 height: "50px",
@@ -47,12 +45,11 @@ const Profile = () => {
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
-              }}
-            >
+              }}>
               <SlUserFollow style={{ fontSize: "20px" }} />
             </Button>
             <Button
-            className=" bg-transparent "
+              className=" bg-transparent "
               style={{
                 borderRadius: "50%",
                 height: "50px",
@@ -60,12 +57,11 @@ const Profile = () => {
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
-              }}
-            >
+              }}>
               <AiOutlineEdit style={{ fontSize: "20px" }} />
             </Button>
             <Button
-            className=" bg-transparent "
+              className=" bg-transparent "
               style={{
                 borderRadius: "50%",
                 height: "50px",
@@ -73,8 +69,7 @@ const Profile = () => {
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
-              }}
-            >
+              }}>
               <MdDeleteOutline style={{ fontSize: "20px" }} />
             </Button>
           </div>

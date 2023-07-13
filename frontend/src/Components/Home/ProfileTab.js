@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Tab, Nav, Form, Button, Container } from "react-bootstrap";
-import profile from "./../../img/profile.png";
+import profile from "./../../img/profile.jpg";
 import { AiOutlineEdit } from "react-icons/ai";
 import { MdDeleteOutline } from "react-icons/md";
 
@@ -22,11 +22,7 @@ const MyTabs = () => {
   };
 
   return (
-    <Tab.Container
-      activeKey={activeTab}
-      className="tabDetail"
-      onSelect={handleTabSelect}
-    >
+    <Tab.Container activeKey={activeTab} className="tabDetail" onSelect={handleTabSelect}>
       <Nav variant="tabs">
         <Nav.Item>
           <Nav.Link eventKey="tab1">POST TEXT</Nav.Link>
@@ -44,11 +40,7 @@ const MyTabs = () => {
 
         {/* tab 1 content here ========= */}
         <Tab.Pane eventKey="tab1">
-          <Form
-            onSubmit={handleSubmit}
-            style={{ margin: "5px 0px!important" }}
-            className="formSearch"
-          >
+          <Form onSubmit={handleSubmit} style={{ margin: "5px 0px!important" }} className="formSearch">
             <Form.Control
               type="text"
               placeholder="POST TEXT"
@@ -56,11 +48,7 @@ const MyTabs = () => {
               className="p-3 text-white border border-primary bg-transparent opacity-0.05"
               onChange={(e) => setSearchTerm(e.target.value)}
             />
-            <Button
-              variant="primary"
-              className="p-3 bg-transparent "
-              type="submit"
-            >
+            <Button variant="primary" className="p-3 bg-transparent " type="submit">
               PUBLISH POST
             </Button>
           </Form>
@@ -87,14 +75,11 @@ const MyTabs = () => {
             </div>
             <Container>
               <p>
-                loremLorem Ipsum is simply dummy text of the printing and
-                typesetting industry. Lorem Ipsum has been the industry's
-                standard dummy text ever since the 1500s, when an unknown
-                printer took a galley of type and scrambled it to make a type
-                specimen book. It has survived not only five centuries, but also
-                the leap into electronic typesetting, remaining essentially
-                unchanged. It was popularised in the 1960s with the release of
-                Letraset sheets containing Lorem Ipsum passage.
+                loremLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+                industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
+                scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap
+                into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the
+                release of Letraset sheets containing Lorem Ipsum passage.
               </p>
               <br></br>
               <div
@@ -102,8 +87,7 @@ const MyTabs = () => {
                   margin: "0px",
                   display: "flex",
                   alignItems: "center",
-                }}
-              >
+                }}>
                 <Button className=" bg-transparent ">Add Comments</Button>
                 <Button className=" bg-transparent ">Show Comments</Button>
 
@@ -116,8 +100,7 @@ const MyTabs = () => {
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
-                  }}
-                >
+                  }}>
                   <AiOutlineEdit style={{ fontSize: "20px" }} />
                 </Button>
                 <Button
@@ -129,8 +112,7 @@ const MyTabs = () => {
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
-                  }}
-                >
+                  }}>
                   <MdDeleteOutline style={{ fontSize: "20px" }} />
                 </Button>
               </div>
@@ -157,14 +139,11 @@ const MyTabs = () => {
             </div>
             <Container>
               <p>
-                loremLorem Ipsum is simply dummy text of the printing and
-                typesetting industry. Lorem Ipsum has been the industry's
-                standard dummy text ever since the 1500s, when an unknown
-                printer took a galley of type and scrambled it to make a type
-                specimen book. It has survived not only five centuries, but also
-                the leap into electronic typesetting, remaining essentially
-                unchanged. It was popularised in the 1960s with the release of
-                Letraset sheets containing Lorem Ipsum passage.
+                loremLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+                industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
+                scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap
+                into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the
+                release of Letraset sheets containing Lorem Ipsum passage.
               </p>
               <br></br>
               <div
@@ -172,8 +151,7 @@ const MyTabs = () => {
                   margin: "0px",
                   display: "flex",
                   alignItems: "center",
-                }}
-              >
+                }}>
                 <Button className=" bg-transparent ">Add Comments</Button>
                 <Button className=" bg-transparent ">Show Comments</Button>
 
@@ -186,8 +164,7 @@ const MyTabs = () => {
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
-                  }}
-                >
+                  }}>
                   <AiOutlineEdit style={{ fontSize: "20px" }} />
                 </Button>
                 <Button
@@ -199,8 +176,7 @@ const MyTabs = () => {
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
-                  }}
-                >
+                  }}>
                   <MdDeleteOutline style={{ fontSize: "20px" }} />
                 </Button>
               </div>
@@ -227,14 +203,11 @@ const MyTabs = () => {
             </div>
             <Container>
               <p>
-                loremLorem Ipsum is simply dummy text of the printing and
-                typesetting industry. Lorem Ipsum has been the industry's
-                standard dummy text ever since the 1500s, when an unknown
-                printer took a galley of type and scrambled it to make a type
-                specimen book. It has survived not only five centuries, but also
-                the leap into electronic typesetting, remaining essentially
-                unchanged. It was popularised in the 1960s with the release of
-                Letraset sheets containing Lorem Ipsum passage.
+                loremLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+                industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
+                scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap
+                into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the
+                release of Letraset sheets containing Lorem Ipsum passage.
               </p>
               <br></br>
               <div
@@ -242,8 +215,7 @@ const MyTabs = () => {
                   margin: "0px",
                   display: "flex",
                   alignItems: "center",
-                }}
-              >
+                }}>
                 <Button className=" bg-transparent ">Add Comments</Button>
                 <Button className=" bg-transparent ">Show Comments</Button>
 
@@ -256,8 +228,7 @@ const MyTabs = () => {
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
-                  }}
-                >
+                  }}>
                   <AiOutlineEdit style={{ fontSize: "20px" }} />
                 </Button>
                 <Button
@@ -269,8 +240,7 @@ const MyTabs = () => {
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
-                  }}
-                >
+                  }}>
                   <MdDeleteOutline style={{ fontSize: "20px" }} />
                 </Button>
               </div>
@@ -302,14 +272,11 @@ const MyTabs = () => {
             </div>
             <Container>
               <p>
-                loremLorem Ipsum is simply dummy text of the printing and
-                typesetting industry. Lorem Ipsum has been the industry's
-                standard dummy text ever since the 1500s, when an unknown
-                printer took a galley of type and scrambled it to make a type
-                specimen book. It has survived not only five centuries, but also
-                the leap into electronic typesetting, remaining essentially
-                unchanged. It was popularised in the 1960s with the release of
-                Letraset sheets containing Lorem Ipsum passage.
+                loremLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+                industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
+                scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap
+                into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the
+                release of Letraset sheets containing Lorem Ipsum passage.
               </p>
               <br></br>
               <div
@@ -317,10 +284,9 @@ const MyTabs = () => {
                   margin: "0px",
                   display: "flex",
                   alignItems: "center",
-                }}
-              >
+                }}>
                 <Button
-                className=" bg-transparent "
+                  className=" bg-transparent "
                   style={{
                     borderRadius: "50%",
                     height: "50px",
@@ -328,12 +294,11 @@ const MyTabs = () => {
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
-                  }}
-                >
+                  }}>
                   <AiOutlineEdit style={{ fontSize: "20px" }} />
                 </Button>
                 <Button
-                className=" bg-transparent "
+                  className=" bg-transparent "
                   style={{
                     borderRadius: "50%",
                     height: "50px",
@@ -341,8 +306,7 @@ const MyTabs = () => {
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
-                  }}
-                >
+                  }}>
                   <MdDeleteOutline style={{ fontSize: "20px" }} />
                 </Button>
               </div>
@@ -369,14 +333,11 @@ const MyTabs = () => {
             </div>
             <Container>
               <p>
-                loremLorem Ipsum is simply dummy text of the printing and
-                typesetting industry. Lorem Ipsum has been the industry's
-                standard dummy text ever since the 1500s, when an unknown
-                printer took a galley of type and scrambled it to make a type
-                specimen book. It has survived not only five centuries, but also
-                the leap into electronic typesetting, remaining essentially
-                unchanged. It was popularised in the 1960s with the release of
-                Letraset sheets containing Lorem Ipsum passage.
+                loremLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+                industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
+                scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap
+                into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the
+                release of Letraset sheets containing Lorem Ipsum passage.
               </p>
               <br></br>
               <div
@@ -384,10 +345,9 @@ const MyTabs = () => {
                   margin: "0px",
                   display: "flex",
                   alignItems: "center",
-                }}
-              >
+                }}>
                 <Button
-                className=" bg-transparent "
+                  className=" bg-transparent "
                   style={{
                     borderRadius: "50%",
                     height: "50px",
@@ -395,12 +355,11 @@ const MyTabs = () => {
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
-                  }}
-                >
+                  }}>
                   <AiOutlineEdit style={{ fontSize: "20px" }} />
                 </Button>
                 <Button
-                className=" bg-transparent "
+                  className=" bg-transparent "
                   style={{
                     borderRadius: "50%",
                     height: "50px",
@@ -408,8 +367,7 @@ const MyTabs = () => {
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
-                  }}
-                >
+                  }}>
                   <MdDeleteOutline style={{ fontSize: "20px" }} />
                 </Button>
               </div>
@@ -436,14 +394,11 @@ const MyTabs = () => {
             </div>
             <Container>
               <p>
-                loremLorem Ipsum is simply dummy text of the printing and
-                typesetting industry. Lorem Ipsum has been the industry's
-                standard dummy text ever since the 1500s, when an unknown
-                printer took a galley of type and scrambled it to make a type
-                specimen book. It has survived not only five centuries, but also
-                the leap into electronic typesetting, remaining essentially
-                unchanged. It was popularised in the 1960s with the release of
-                Letraset sheets containing Lorem Ipsum passage.
+                loremLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+                industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
+                scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap
+                into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the
+                release of Letraset sheets containing Lorem Ipsum passage.
               </p>
               <br></br>
               <div
@@ -451,10 +406,9 @@ const MyTabs = () => {
                   margin: "0px",
                   display: "flex",
                   alignItems: "center",
-                }}
-              >
+                }}>
                 <Button
-                className=" bg-transparent "
+                  className=" bg-transparent "
                   style={{
                     borderRadius: "50%",
                     height: "50px",
@@ -462,12 +416,11 @@ const MyTabs = () => {
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
-                  }}
-                >
+                  }}>
                   <AiOutlineEdit style={{ fontSize: "20px" }} />
                 </Button>
                 <Button
-                className=" bg-transparent "
+                  className=" bg-transparent "
                   style={{
                     borderRadius: "50%",
                     height: "50px",
@@ -475,8 +428,7 @@ const MyTabs = () => {
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
-                  }}
-                >
+                  }}>
                   <MdDeleteOutline style={{ fontSize: "20px" }} />
                 </Button>
               </div>
