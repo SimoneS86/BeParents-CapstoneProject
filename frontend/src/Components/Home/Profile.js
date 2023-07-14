@@ -4,7 +4,16 @@ import { SlUserFollow } from "react-icons/sl";
 import { AiOutlineEdit } from "react-icons/ai";
 import { MdDeleteOutline } from "react-icons/md";
 import MyTabs from "./ProfileTab";
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { getPostsById } from "../../redux/actions/post";
+
 const Profile = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getPostsById());
+  }, []);
   return (
     <div>
       <Container className="userContainer">

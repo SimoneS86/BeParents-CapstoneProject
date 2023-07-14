@@ -4,10 +4,18 @@ import profile from "./../../img/profile.jpg";
 import "./Home.css";
 import { useSelector } from "react-redux";
 import Post from "./Post";
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { getPosts } from "../../redux/actions/post";
 
 const HomePage = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const posts = useSelector((state) => state.posts);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getPosts());
+  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();

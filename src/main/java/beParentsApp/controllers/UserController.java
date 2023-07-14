@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -36,6 +37,13 @@ public class UserController {
 
 	@GetMapping("/{userId}")
 	public User getUser(@PathVariable UUID userId) throws Exception {
+		return userService.findById(userId);
+	}
+
+	@GetMapping("/me")
+	public User getCurrentUser(Authentication authentication) throws NotFoundException {
+		User userDetails = (User) authentication.getPrincipal();
+		UUID userId = userDetails.getId();
 		return userService.findById(userId);
 	}
 

@@ -5,6 +5,7 @@ import { encryptTransform } from "redux-persist-transform-encrypt";
 import postsReducer from "../reducers/postReducer";
 import remindersReducer from "../reducers/reminderReducer";
 import followElementReducer from "../reducers/followElementReducer";
+import authReducer from "../reducers/authReducer";
 
 const persistConfig = {
   key: "root",
@@ -20,6 +21,7 @@ const rootReducer = combineReducers({
   posts: postsReducer,
   reminders: remindersReducer,
   followElements: followElementReducer,
+  auth: authReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

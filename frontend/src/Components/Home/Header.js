@@ -4,7 +4,10 @@ import logo from "./../../img/logo2.jpg";
 import "./Home.css";
 import { Navbar, Nav, NavDropdown } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { logout } from "../../redux/actions/auth";
 const Header = () => {
+  const dispatch = useDispatch();
   return (
     <>
       <Navbar className="navbarMenu px-4  py-1 d-flex justify-content-between m-3" expand="lg">
@@ -33,6 +36,11 @@ const Header = () => {
               </Link>
               <Link to="/signup">
                 <NavDropdown.Item href="#action/3.2">Sign up</NavDropdown.Item>
+              </Link>
+              <Link to="/login">
+                <NavDropdown.Item href="#action/3.2" onClick={() => dispatch(logout())}>
+                  Logout
+                </NavDropdown.Item>
               </Link>
               <Link to="/professional-signup">
                 <NavDropdown.Item href="#action/3.2">Professional Signup</NavDropdown.Item>

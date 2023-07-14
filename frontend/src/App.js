@@ -7,23 +7,21 @@ import Login from "./Components/User/Login";
 import Signup from "./Components/User/Signup";
 import ProfessionalSignup from "./Components/User/Professional";
 import HomePage from "./Components/Home/Index";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getPosts, getPostsById } from "./redux/actions/post";
 import { BrowserRouter } from "react-router-dom";
 import { getReminders, getRemindersById } from "./redux/actions/reminder";
 import { getFollowedByStndId } from "./redux/actions/followElement";
+import { getUserData } from "./redux/actions/auth";
 
 function App() {
   const dispatch = useDispatch();
+  const token = useSelector((state) => state.auth.token);
 
   useEffect(() => {
-    dispatch(getPosts());
-  }, []);
-
-  useEffect(() => {
-    dispatch(getPostsById());
-  }, []);
+    dispatch(getUserData());
+  }, [token]);
 
   // useEffect(() => {
   //   dispatch(getReminders());
