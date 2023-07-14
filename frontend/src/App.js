@@ -11,10 +11,12 @@ import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { getPosts, getPostsById } from "./redux/actions/post";
 import { BrowserRouter } from "react-router-dom";
-import { getReminders } from "./redux/actions/reminder";
+import { getReminders, getRemindersById } from "./redux/actions/reminder";
+import { getFollowedByStndId } from "./redux/actions/followElement";
 
 function App() {
   const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(getPosts());
   }, []);
@@ -23,8 +25,16 @@ function App() {
     dispatch(getPostsById());
   }, []);
 
+  // useEffect(() => {
+  //   dispatch(getReminders());
+  // }, []);
+
   useEffect(() => {
-    dispatch(getReminders());
+    dispatch(getRemindersById());
+  }, []);
+
+  useEffect(() => {
+    dispatch(getFollowedByStndId());
   }, []);
 
   return (

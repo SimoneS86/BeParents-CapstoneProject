@@ -40,11 +40,11 @@ public class JWTTools {
 			Jwts.parserBuilder().setSigningKey(Keys.hmacShaKeyFor(secret.getBytes())).build().parse(token);
 
 		} catch (MalformedJwtException e) {
-			throw new UnauthorizedException("Il token non è valido");
+			throw new UnauthorizedException("Invalid token");
 		} catch (ExpiredJwtException e) {
-			throw new UnauthorizedException("Il token è scaduto");
+			throw new UnauthorizedException("Token expired");
 		} catch (Exception e) {
-			throw new UnauthorizedException("Problemi col token, per favore effettua di nuovo il login");
+			throw new UnauthorizedException("Problems with the token, please login again");
 		}
 	}
 

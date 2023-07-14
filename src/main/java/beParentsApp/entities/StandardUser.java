@@ -1,5 +1,6 @@
 package beParentsApp.entities;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -22,7 +23,7 @@ import lombok.ToString;
 public class StandardUser extends User {
 	@ManyToMany
 	@JsonIgnore
-	private List<ProfessionalUser> followed;
+	private List<ProfessionalUser> followed = new ArrayList<>();;
 
 	public StandardUser(String name, String surname, String email, String password) {
 		super(name, surname, email, password);

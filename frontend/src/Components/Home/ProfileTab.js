@@ -5,6 +5,8 @@ import { AiOutlineEdit } from "react-icons/ai";
 import { MdDeleteOutline } from "react-icons/md";
 import { useSelector } from "react-redux";
 import Reminder from "./Reminder";
+import Post from "./Post";
+import FollowElement from "./followElement";
 
 const MyTabs = () => {
   const [activeTab, setActiveTab] = useState("tab1");
@@ -12,6 +14,7 @@ const MyTabs = () => {
   const [isChecked, setIsChecked] = useState(false);
   const reminders = useSelector((state) => state.reminders);
   const posts = useSelector((state) => state.posts);
+  const followElements = useSelector((state) => state.followElements);
 
   const handleCheckboxChange = (e) => {
     setIsChecked(e.target.checked);
@@ -56,200 +59,7 @@ const MyTabs = () => {
               PUBLISH POST
             </Button>
           </Form>
-          {/* post container here ========= */}
-          {posts.content && posts.content.map((post) => <Reminder key={post.id} reminder={post} />)}
-          {/* <Container className="userContainer mt-5">
-            <div className="row">
-              <div className="left">
-                <img
-                  className="thumbnail-image"
-                  style={{ width: "55px", height: "55px", borderRadius: "50%" }}
-                  src={profile}
-                  alt="user pic"
-                />
-                <span>
-                  <h3>Full Name here</h3>
-                  <p>Profession</p>
-                </span>
-              </div>
-              <div className="right">
-                <h3>Publication Date</h3>
-                <p>Last Update</p>
-              </div>
-            </div>
-            <Container>
-              <p>
-                loremLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
-                industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
-                scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap
-                into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the
-                release of Letraset sheets containing Lorem Ipsum passage.
-              </p>
-              <br></br>
-              <div
-                style={{
-                  margin: "0px",
-                  display: "flex",
-                  alignItems: "center",
-                }}>
-                <Button className=" bg-transparent ">Add Comments</Button>
-                <Button className=" bg-transparent ">Show Comments</Button>
-
-                <Button
-                  className=" bg-transparent "
-                  style={{
-                    borderRadius: "50%",
-                    height: "50px",
-                    width: "50px",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                  }}>
-                  <AiOutlineEdit style={{ fontSize: "20px" }} />
-                </Button>
-                <Button
-                  className=" bg-transparent "
-                  style={{
-                    borderRadius: "50%",
-                    height: "50px",
-                    width: "50px",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                  }}>
-                  <MdDeleteOutline style={{ fontSize: "20px" }} />
-                </Button>
-              </div>
-            </Container>
-          </Container>
-          <Container className="userContainer mt-5">
-            <div className="row">
-              <div className="left">
-                <img
-                  className="thumbnail-image"
-                  style={{ width: "55px", height: "55px", borderRadius: "50%" }}
-                  src={profile}
-                  alt="user pic"
-                />
-                <span>
-                  <h3>Full Name here</h3>
-                  <p>Profession</p>
-                </span>
-              </div>
-              <div className="right">
-                <h3>Publication Date</h3>
-                <p>Last Update</p>
-              </div>
-            </div>
-            <Container>
-              <p>
-                loremLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
-                industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
-                scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap
-                into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the
-                release of Letraset sheets containing Lorem Ipsum passage.
-              </p>
-              <br></br>
-              <div
-                style={{
-                  margin: "0px",
-                  display: "flex",
-                  alignItems: "center",
-                }}>
-                <Button className=" bg-transparent ">Add Comments</Button>
-                <Button className=" bg-transparent ">Show Comments</Button>
-
-                <Button
-                  className=" bg-transparent "
-                  style={{
-                    borderRadius: "50%",
-                    height: "50px",
-                    width: "50px",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                  }}>
-                  <AiOutlineEdit style={{ fontSize: "20px" }} />
-                </Button>
-                <Button
-                  className=" bg-transparent "
-                  style={{
-                    borderRadius: "50%",
-                    height: "50px",
-                    width: "50px",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                  }}>
-                  <MdDeleteOutline style={{ fontSize: "20px" }} />
-                </Button>
-              </div>
-            </Container>
-          </Container>
-          <Container className="userContainer mt-5">
-            <div className="row">
-              <div className="left">
-                <img
-                  className="thumbnail-image"
-                  style={{ width: "55px", height: "55px", borderRadius: "50%" }}
-                  src={profile}
-                  alt="user pic"
-                />
-                <span>
-                  <h3>Full Name here</h3>
-                  <p>Profession</p>
-                </span>
-              </div>
-              <div className="right">
-                <h3>Publication Date</h3>
-                <p>Last Update</p>
-              </div>
-            </div>
-            <Container>
-              <p>
-                loremLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
-                industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
-                scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap
-                into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the
-                release of Letraset sheets containing Lorem Ipsum passage.
-              </p>
-              <br></br>
-              <div
-                style={{
-                  margin: "0px",
-                  display: "flex",
-                  alignItems: "center",
-                }}>
-                <Button className=" bg-transparent ">Add Comments</Button>
-                <Button className=" bg-transparent ">Show Comments</Button>
-
-                <Button
-                  className=" bg-transparent "
-                  style={{
-                    borderRadius: "50%",
-                    height: "50px",
-                    width: "50px",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                  }}>
-                  <AiOutlineEdit style={{ fontSize: "20px" }} />
-                </Button>
-                <Button
-                  className=" bg-transparent "
-                  style={{
-                    borderRadius: "50%",
-                    height: "50px",
-                    width: "50px",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                  }}>
-                  <MdDeleteOutline style={{ fontSize: "20px" }} />
-                </Button>
-              </div>
-            </Container>
-          </Container> */}
+          {posts.content && posts.content.map((post) => <Post key={post.id} post={post} />)}
         </Tab.Pane>
         {/* tab 2 content here ========= */}
 
@@ -261,7 +71,9 @@ const MyTabs = () => {
         {/* tab 3 content here ========= */}
         <Tab.Pane eventKey="tab3">
           <Container className="">
-            <div className="row userContainer">
+            {followElements.content &&
+              followElements.content.map((follow) => <FollowElement key={follow.id} follow={follow} />)}
+            {/* <div className="row userContainer">
               <div className="left">
                 <img
                   className="thumbnail-image"
@@ -328,7 +140,7 @@ const MyTabs = () => {
               <div className="right">
                 <Button className=" bg-transparent ">UNFOLLOW</Button>
               </div>
-            </div>
+            </div> */}
           </Container>
         </Tab.Pane>
       </Tab.Content>

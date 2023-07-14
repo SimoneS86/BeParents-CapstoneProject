@@ -1,8 +1,10 @@
 const AUTHORIZATION =
   "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJtYXJjb0BleGFtcGxlLmNvbSIsImlhdCI6MTY4OTI1MTAzOCwiZXhwIjoxNjg5ODU1ODM4fQ.OdB3ZwXGBwoqqPPKq-N2jk-89EffiA3MnSGvNT3cA971r-7_8nO7-_2tUSDmnHOG4D-txWQnESTPwUaBj59o2w";
 const BASE_REMINDER_URL = "http://localhost:5001/api/reminder";
+const BASE_REMINDER_URL_PLUS_ID = "http://localhost:5001/api/user/e4e242e2-8945-47dc-b1b3-835b228e46f2/reminders";
 
 export const GET_REMINDERS = "GET_REMINDERS";
+export const GET_REMINDERS_BY_ID = "GET_REMINDERS_BY_ID";
 export const POST_REMINDER = "POST_REMINER";
 export const PUT_REMINDER = "PUT_REMINDER";
 export const DELETE_REMINDER = "DELETE_REMINDER";
@@ -18,6 +20,28 @@ export const getReminders = () => {
       if (resp.ok) {
         let data = await resp.json();
         dispatch({ type: GET_REMINDERS, payload: data });
+      } else {
+        console.log("error");
+      }
+    } catch (error) {
+      console.log(error);
+    } finally {
+      console.log("fetch loading finish");
+    }
+  };
+};
+
+export const getRemindersById = () => {
+  return async (dispatch) => {
+    try {
+      let resp = await fetch(`${BASE_REMINDER_URL_PLUS_ID}`, {
+        headers: {
+          Authorization: AUTHORIZATION,
+        },
+      });
+      if (resp.ok) {
+        let data = await resp.json();
+        dispatch({ type: GET_REMINDERS_BY_ID, payload: data });
       } else {
         console.log("error");
       }

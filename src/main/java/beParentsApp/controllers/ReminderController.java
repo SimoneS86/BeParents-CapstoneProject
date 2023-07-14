@@ -55,12 +55,4 @@ public class ReminderController {
 	public void deleteReminder(@PathVariable UUID reminderId) throws NotFoundException {
 		reminderService.findByIdAndDelete(reminderId);
 	}
-
-//	@GetMapping("/findby/date-{date}")
-//	public ResponseEntity<Page<Reminder>> getRemindersByDateAndUser(@PathVariable LocalDate date) {
-//		User loggedInUser = getLoggedInUser();
-//		Page<Reminder> reminders = reminderService.findRemindersByDateAndUser(date, loggedInUser.getId(), 0, 20, "id");
-//		return ResponseEntity.ok(reminders);
-//	}
-
 }

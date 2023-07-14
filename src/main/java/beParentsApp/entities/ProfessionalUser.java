@@ -1,5 +1,6 @@
 package beParentsApp.entities;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -29,7 +30,7 @@ public class ProfessionalUser extends User {
 	private String description;
 	@ManyToMany
 	@JsonIgnore
-	private List<StandardUser> followers;
+	private List<StandardUser> followers = new ArrayList<>();;
 
 	public ProfessionalUser(String name, String surname, String email, String password, Profession profession,
 			String registrationNumber, String description) {

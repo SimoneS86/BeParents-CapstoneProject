@@ -9,11 +9,14 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import beParentsApp.entities.ProfessionalUser;
 import beParentsApp.entities.StandardUser;
 import beParentsApp.entities.payload.StandardUserRegistrationPayload;
 import beParentsApp.exceptions.BadRequestException;
 import beParentsApp.exceptions.NotFoundException;
+import beParentsApp.repositories.ProfessionalUserRepository;
 import beParentsApp.repositories.StandardUserRepository;
 
 @Service
@@ -21,6 +24,9 @@ public class StandardUserService {
 
 	@Autowired
 	StandardUserRepository standardUserRepo;
+
+	@Autowired
+	ProfessionalUserRepository professionalUserRepo;
 
 	@Autowired
 	private PasswordEncoder bcrypt;
@@ -43,6 +49,20 @@ public class StandardUserService {
 		Pageable pageable = PageRequest.of(page, size, Sort.by(sortBy));
 
 		return standardUserRepo.findAll(pageable);
+	}
+
+	public Page<ProfessionalUser> getFollowedUsers(UUID standardUserId, int page, int size, String sortBy) {
+		if (size < 0)
+			size = 0;
+		if (size > 100)
+			size = 100;
+
+		StandardUser standardUser = standardUserRepo.findById(standardUserId)
+				.orElseThrow(() -> new NotFoundException("StandardUser not found"));
+
+		Pageable pageable = PageRequest.of(page, size, Sort.by(sortBy));
+
+		return professionalUserRepo.findByFollowers(standardUser, pageable);
 	}
 
 	public StandardUser findById(UUID id) throws NotFoundException {
@@ -71,6 +91,27 @@ public class StandardUserService {
 		StandardUser standardUser = this.findById(id);
 
 		standardUserRepo.delete(standardUser);
+	}
+
+	@Transactional
+	public void followProfessionalUser(UUID standardUserId, UUID professionalUserId) {
+		StandardUser standardUser = standardUserRepo.findById(standardUserId)
+				.orElseThrow(() -> new NotFoundException("StandardUser not found"));
+
+		ProfessionalUser professionalUser = professionalUserRepo.findById(professionalUserId)
+				.orElseThrow(() -> new NotFoundException("ProfessionalUser not found"));
+
+		// Verifica se l'utente standard sta già seguendo il professionista
+		if (standardUser.getFollowed().contains(professionalUser)) {
+			standardUser.getFollowed().remove(professionalUser);
+			professionalUser.getFollowers().remove(standardUser);
+		} else {
+			standardUser.getFollowed().add(professionalUser);
+			professionalUser.getFollowers().add(standardUser);
+		}
+
+		standardUserRepo.save(standardUser);
+		professionalUserRepo.save(professionalUser);
 	}
 
 }

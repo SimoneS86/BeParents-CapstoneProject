@@ -25,7 +25,7 @@ const Post = ({ post }) => {
       <Container>
         <p>{post.content}</p>
         <br></br>
-        <Button className=" bg-transparent mb-1 ">Addds Comments</Button>
+        <Button className=" bg-transparent mb-1 ">Adds Comments</Button>
         <Button className=" bg-transparent mb-1">Show Comments</Button>
       </Container>
     </Container>

@@ -11,16 +11,21 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import beParentsApp.entities.ProfessionalUser;
+import beParentsApp.entities.StandardUser;
 import beParentsApp.entities.payload.ProfessionalUserRegistrationPayload;
 import beParentsApp.exceptions.BadRequestException;
 import beParentsApp.exceptions.NotFoundException;
 import beParentsApp.repositories.ProfessionalUserRepository;
+import beParentsApp.repositories.StandardUserRepository;
 
 @Service
 public class ProfessionalUserService {
 
 	@Autowired
 	ProfessionalUserRepository professionalUserRepo;
+
+	@Autowired
+	StandardUserRepository standardUserRepo;
 
 	@Autowired
 	private PasswordEncoder bcrypt;
@@ -43,6 +48,20 @@ public class ProfessionalUserService {
 		Pageable pageable = PageRequest.of(page, size, Sort.by(sortBy));
 
 		return professionalUserRepo.findAll(pageable);
+	}
+
+	public Page<StandardUser> getFollowersUsers(UUID professionalUserId, int page, int size, String sortBy) {
+		if (size < 0)
+			size = 0;
+		if (size > 100)
+			size = 100;
+
+		ProfessionalUser professionalUser = professionalUserRepo.findById(professionalUserId)
+				.orElseThrow(() -> new NotFoundException("ProfessionalUser not found"));
+
+		Pageable pageable = PageRequest.of(page, size, Sort.by(sortBy));
+
+		return standardUserRepo.findByFollowed(professionalUser, pageable);
 	}
 
 	public ProfessionalUser findById(UUID id) throws NotFoundException {
