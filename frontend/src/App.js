@@ -27,13 +27,13 @@ function App() {
   //   dispatch(getReminders());
   // }, []);
 
-  useEffect(() => {
-    dispatch(getRemindersById());
-  }, []);
+  // useEffect(() => {
+  //   dispatch(getRemindersById());
+  // }, []);
 
-  useEffect(() => {
-    dispatch(getFollowedByStndId());
-  }, []);
+  // useEffect(() => {
+  //   dispatch(getFollowedByStndId());
+  // }, []);
 
   return (
     <BrowserRouter>

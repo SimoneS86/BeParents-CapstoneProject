@@ -1,12 +1,15 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Tab, Nav, Form, Button, Container } from "react-bootstrap";
 import profile from "./../../img/profile.jpg";
 import { AiOutlineEdit } from "react-icons/ai";
 import { MdDeleteOutline } from "react-icons/md";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Reminder from "./Reminder";
 import Post from "./Post";
 import FollowElement from "./followElement";
+import { getPostsById } from "../../redux/actions/post";
+import { getRemindersById } from "../../redux/actions/reminder";
+import { getFollowedByStndId, getFollowersByProId } from "../../redux/actions/followElement";
 
 const MyTabs = () => {
   const [activeTab, setActiveTab] = useState("tab1");
@@ -15,7 +18,7 @@ const MyTabs = () => {
   const reminders = useSelector((state) => state.reminders);
   const posts = useSelector((state) => state.posts);
   const followElements = useSelector((state) => state.followElements);
-
+  const dispatch = useDispatch();
   const handleCheckboxChange = (e) => {
     setIsChecked(e.target.checked);
   };
@@ -28,17 +31,33 @@ const MyTabs = () => {
     setActiveTab(selectedTab);
   };
 
+  useEffect(() => {
+    dispatch(getPostsById());
+  }, []);
+
+  useEffect(() => {
+    dispatch(getRemindersById());
+  }, []);
+
+  useEffect(() => {
+    dispatch(getFollowedByStndId());
+  }, []);
+
+  useEffect(() => {
+    dispatch(getFollowersByProId());
+  }, []);
+
   return (
     <Tab.Container activeKey={activeTab} className="tabDetail" onSelect={handleTabSelect}>
       <Nav variant="tabs">
         <Nav.Item>
-          <Nav.Link eventKey="tab1">POST TEXT</Nav.Link>
+          <Nav.Link eventKey="tab1">POST</Nav.Link>
         </Nav.Item>
         <Nav.Item>
-          <Nav.Link eventKey="tab2">TAB REMINDER</Nav.Link>
+          <Nav.Link eventKey="tab2">REMINDER</Nav.Link>
         </Nav.Item>
         <Nav.Item>
-          <Nav.Link eventKey="tab3">TAB FOLLOWER</Nav.Link>
+          <Nav.Link eventKey="tab3">FOLLOWER</Nav.Link>
         </Nav.Item>
       </Nav>
 
@@ -55,7 +74,7 @@ const MyTabs = () => {
               className="p-3 text-white border border-primary bg-transparent opacity-0.05"
               onChange={(e) => setSearchTerm(e.target.value)}
             />
-            <Button variant="primary" className="p-3 bg-transparent " type="submit">
+            <Button variant="primary" className="p-3 bg-transparent ms-2 " type="submit">
               PUBLISH POST
             </Button>
           </Form>
@@ -73,74 +92,6 @@ const MyTabs = () => {
           <Container className="">
             {followElements.content &&
               followElements.content.map((follow) => <FollowElement key={follow.id} follow={follow} />)}
-            {/* <div className="row userContainer">
-              <div className="left">
-                <img
-                  className="thumbnail-image"
-                  style={{ width: "55px", height: "55px", borderRadius: "50%" }}
-                  src={profile}
-                  alt="user pic"
-                />
-                <span>
-                  <h3>Full Name here</h3>
-                  <p>Profession</p>
-                </span>
-              </div>
-              <div className="right">
-                <Button className=" bg-transparent ">UNFOLLOW</Button>
-              </div>
-            </div>
-            <div className="row userContainer">
-              <div className="left">
-                <img
-                  className="thumbnail-image"
-                  style={{ width: "55px", height: "55px", borderRadius: "50%" }}
-                  src={profile}
-                  alt="user pic"
-                />
-                <span>
-                  <h3>Full Name here</h3>
-                  <p>Profession</p>
-                </span>
-              </div>
-              <div className="right">
-                <Button className=" bg-transparent ">UNFOLLOW</Button>
-              </div>
-            </div>
-            <div className="row userContainer">
-              <div className="left">
-                <img
-                  className="thumbnail-image"
-                  style={{ width: "55px", height: "55px", borderRadius: "50%" }}
-                  src={profile}
-                  alt="user pic"
-                />
-                <span>
-                  <h3>Full Name here</h3>
-                  <p>Profession</p>
-                </span>
-              </div>
-              <div className="right">
-                <Button className=" bg-transparent ">UNFOLLOW</Button>
-              </div>
-            </div>
-            <div className="row userContainer">
-              <div className="left">
-                <img
-                  className="thumbnail-image"
-                  style={{ width: "55px", height: "55px", borderRadius: "50%" }}
-                  src={profile}
-                  alt="user pic"
-                />
-                <span>
-                  <h3>Full Name here</h3>
-                  <p>Profession</p>
-                </span>
-              </div>
-              <div className="right">
-                <Button className=" bg-transparent ">UNFOLLOW</Button>
-              </div>
-            </div> */}
           </Container>
         </Tab.Pane>
       </Tab.Content>

@@ -6,6 +6,7 @@ import postsReducer from "../reducers/postReducer";
 import remindersReducer from "../reducers/reminderReducer";
 import followElementReducer from "../reducers/followElementReducer";
 import authReducer from "../reducers/authReducer";
+import profileElementReducer from "../reducers/profileElementReducer";
 
 const persistConfig = {
   key: "root",
@@ -22,6 +23,7 @@ const rootReducer = combineReducers({
   reminders: remindersReducer,
   followElements: followElementReducer,
   auth: authReducer,
+  profileElements: profileElementReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

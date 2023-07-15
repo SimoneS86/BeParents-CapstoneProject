@@ -1,24 +1,23 @@
-const BASE_REMINDER_URL = "http://localhost:5001/api/reminder";
-const BASE_REMINDER_URL_BY_ID = "http://localhost:5001/api/user";
+const BASE_USER_URL = "http://localhost:5001/api/user";
 
-export const GET_REMINDERS = "GET_REMINDERS";
-export const GET_REMINDERS_BY_ID = "GET_REMINDERS_BY_ID";
-export const POST_REMINDER = "POST_REMINER";
-export const PUT_REMINDER = "PUT_REMINDER";
-export const DELETE_REMINDER = "DELETE_REMINDER";
+export const GET_USERS = "GET_USERS";
+export const GET_USER_BY_ID = "GET_USER_BY_ID";
+export const POST_USER = "POST_USER";
+export const PUT_USER = "PUT_USER";
+export const DELETE_USER = "DELETE_USER";
 
-export const getReminders = () => {
+export const getUsers = () => {
   return async (dispatch, getState) => {
     const token = getState().auth.token;
     try {
-      let resp = await fetch(`${BASE_REMINDER_URL}`, {
+      let resp = await fetch(`${BASE_USER_URL}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
       if (resp.ok) {
         let data = await resp.json();
-        dispatch({ type: GET_REMINDERS, payload: data });
+        dispatch({ type: GET_USERS, payload: data });
       } else {
         console.log("error");
       }
@@ -30,19 +29,19 @@ export const getReminders = () => {
   };
 };
 
-export const getRemindersById = () => {
+export const getUserById = () => {
   return async (dispatch, getState) => {
     const token = getState().auth.token;
     const user = getState().auth.userData;
     try {
-      let resp = await fetch(`${BASE_REMINDER_URL_BY_ID}/${user.id}/reminders`, {
+      let resp = await fetch(`${BASE_USER_URL}/${user.id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
       if (resp.ok) {
         let data = await resp.json();
-        dispatch({ type: GET_REMINDERS_BY_ID, payload: data });
+        dispatch({ type: GET_USER_BY_ID, payload: data });
       } else {
         console.log("error");
       }
@@ -54,11 +53,11 @@ export const getRemindersById = () => {
   };
 };
 
-export const postReminder = (userData, reminderId, body) => {
+export const postUser = (userData, userId, body) => {
   return async (dispatch, getState) => {
     const token = getState().auth.token;
     try {
-      let resp = await fetch(`${BASE_REMINDER_URL}/${reminderId}`, {
+      let resp = await fetch(`${BASE_USER_URL}/${userId}`, {
         method: "POST",
         headers: {
           Authorization: `Bearer ${token}`,
@@ -69,7 +68,7 @@ export const postReminder = (userData, reminderId, body) => {
       if (resp.ok) {
         let data = await resp.json();
         data.user = userData;
-        dispatch({ type: POST_REMINDER, payload: data });
+        dispatch({ type: POST_USER, payload: data });
       } else {
         console.log("error");
       }
@@ -81,11 +80,11 @@ export const postReminder = (userData, reminderId, body) => {
   };
 };
 
-export const putReminder = (userData, reminderId, body) => {
+export const putUser = (userData, userId, body) => {
   return async (dispatch, getState) => {
     const token = getState().auth.token;
     try {
-      let resp = await fetch(`${BASE_REMINDER_URL}/${reminderId}`, {
+      let resp = await fetch(`${BASE_USER_URL}/${userId}`, {
         method: "PUT",
         headers: {
           Authorization: `Bearer ${token}`,
@@ -96,7 +95,7 @@ export const putReminder = (userData, reminderId, body) => {
       if (resp.ok) {
         let data = await resp.json();
         data.user = userData;
-        dispatch({ type: PUT_REMINDER, id: reminderId, payload: data });
+        dispatch({ type: PUT_USER, id: userId, payload: data });
       } else {
         console.log("error");
       }
@@ -108,11 +107,11 @@ export const putReminder = (userData, reminderId, body) => {
   };
 };
 
-export const deleteReminder = (reminderId) => {
+export const deleteUser = (userId) => {
   return async (dispatch, getState) => {
     const token = getState().auth.token;
     try {
-      let resp = await fetch(`${BASE_REMINDER_URL}/${reminderId}`, {
+      let resp = await fetch(`${BASE_USER_URL}/${userId}`, {
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${token}`,
@@ -120,7 +119,7 @@ export const deleteReminder = (reminderId) => {
         },
       });
       if (resp.ok) {
-        dispatch({ type: DELETE_REMINDER, payload: reminderId });
+        dispatch({ type: DELETE_USER, payload: userId });
       } else {
         console.log("error");
       }

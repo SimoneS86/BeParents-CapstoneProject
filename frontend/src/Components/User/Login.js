@@ -43,9 +43,11 @@ const Login = () => {
       </Form.Group>
       <br></br>
       <br></br>
+      {/* <Link to="/"> */}
       <Button className=" bg-transparent p-3 pr-2 " type="submit">
         LOG IN
       </Button>
+      {/* </Link> */}
       <Link to="/signup">
         <Button className=" bg-transparent ">Sign Up Standard</Button>
       </Link>

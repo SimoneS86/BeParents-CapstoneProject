@@ -43,8 +43,8 @@ const Post = ({ post }) => {
           className="bg-transparent mt-1 mb-2"
           style={{
             borderRadius: "50%",
-            height: "50px",
-            width: "50px",
+            height: "40px",
+            width: "40px",
             // display: "flex",
             // alignItems: "center",
             // justifyContent: "center",
@@ -56,8 +56,8 @@ const Post = ({ post }) => {
           className="bg-transparent mt-1 mb-2"
           style={{
             borderRadius: "50%",
-            height: "50px",
-            width: "50px",
+            height: "40px",
+            width: "40px",
             // display: "flex",
             // alignItems: "center",
             // justifyContent: "center",
@@ -68,19 +68,47 @@ const Post = ({ post }) => {
         <Collapse in={showComments}>
           <p>
             {post.comments.map((comment) => (
-              <div
-                key={comment.id}
-                className="comment"
-                style={{ display: "flex", alignItems: "center", marginBottom: "10px" }}>
-                <img
-                  className="comment-thumbnail-image"
-                  style={{ width: "30px", height: "30px", borderRadius: "50%", marginRight: "10px" }}
+              <Container key={comment.id} className="comment my-2">
+                <div className="row">
+                  <div className="left">
+                    <img
+                      className="thumbnail-image"
+                      style={{ width: "35px", height: "35px", borderRadius: "50%" }}
+                      src={profile}
+                      alt="user pic"
+                    />
+                    <span>
+                      <h3>{`${comment.user.name} ${comment.user.surname}`}</h3>
+                      {comment.user.profession && <p>{comment.user.profession}</p>}
+                    </span>
+                  </div>
+                  <div className="right">
+                    <p>{comment.publicationDate}</p>
+                    {/* <p>{post.lastUpdate}</p> */}
+                  </div>
+                </div>
+                {/* <img
+                  className="thumbnail-image mb-2"
+                  style={{ width: "30px", height: "30px", borderRadius: "50%" }}
                   src={profile}
                   alt="user pic"
-                />
+                /> */}
                 <p>{comment.content}</p>
-                <p>{comment.publicationDate}</p>
-              </div>
+                {/* <p>{comment.publicationDate}</p> */}
+              </Container>
+              // <div
+              //   key={comment.id}
+              //   className="comment"
+              //   style={{ display: "flex", alignItems: "center", marginBottom: "10px" }}>
+              //   <img
+              //     className="comment-thumbnail-image"
+              //     style={{ width: "30px", height: "30px", borderRadius: "50%", marginRight: "10px" }}
+              //     src={profile}
+              //     alt="user pic"
+              //   />
+              //   <p>{comment.content}</p>
+              //   <p>{comment.publicationDate}</p>
+              // </div>
             ))}
           </p>
         </Collapse>

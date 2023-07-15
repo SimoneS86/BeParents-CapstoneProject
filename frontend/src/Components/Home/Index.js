@@ -40,8 +40,8 @@ const HomePage = () => {
       {posts.content && posts.content.map((post) => <Post key={post.id} post={post} />)}
 
       <br></br>
-      <Container className="userContainer">
-        {/* post 1 here ppppp======== */}
+      {/* <Container className="userContainer">
+      
         <Container className=" post">
           <img
             className="thumbnail-image"
@@ -58,7 +58,7 @@ const HomePage = () => {
             Aldus PageMaker including versions of Lorem Ipsum
           </p>
         </Container>
-        {/* post 2 hre and se on === */}
+       
         <Container className=" post">
           <img
             className="thumbnail-image"
@@ -75,7 +75,7 @@ const HomePage = () => {
             Aldus PageMaker including versions of Lorem Ipsum
           </p>
         </Container>
-      </Container>
+      </Container> */}
     </>
   );
 };

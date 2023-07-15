@@ -4,16 +4,38 @@ import { SlUserFollow } from "react-icons/sl";
 import { AiOutlineEdit } from "react-icons/ai";
 import { MdDeleteOutline } from "react-icons/md";
 import MyTabs from "./ProfileTab";
-import { useDispatch } from "react-redux";
+import ProfileElement from "./profileElement";
+import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getPostsById } from "../../redux/actions/post";
+import { getRemindersById } from "../../redux/actions/reminder";
+import { getFollowedByStndId, getFollowersByProId } from "../../redux/actions/followElement";
+import { getUserById } from "../../redux/actions/profileElement";
 
 const Profile = () => {
+  const profileElements = useSelector((state) => state.profileElements);
   const dispatch = useDispatch();
 
+  // useEffect(() => {
+  //   dispatch(getPostsById());
+  // }, []);
+
+  // useEffect(() => {
+  //   dispatch(getRemindersById());
+  // }, []);
+
+  // useEffect(() => {
+  //   dispatch(getFollowedByStndId());
+  // }, []);
+
+  // useEffect(() => {
+  //   dispatch(getFollowersByProId());
+  // }, []);
+
   useEffect(() => {
-    dispatch(getPostsById());
+    dispatch(getUserById());
   }, []);
+
   return (
     <div>
       <Container className="userContainer">
@@ -26,18 +48,14 @@ const Profile = () => {
               alt="user pic"
             />
             <span>
-              <h3>Full Name here</h3>
-              <p>Profession</p>
-              <p>123123172412634</p>
+              <h3>{`${profileElements.name} ${profileElements.surname}`}</h3>
+              {profileElements.profession && <p>{profileElements.profession}</p>}
+              {profileElements.registrationNumber && <p>{profileElements.registrationNumber}</p>}
             </span>
           </div>
         </div>
         <Container>
-          <p>
-            loremLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
-            industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
-            scrambled it to make a type specimen book.
-          </p>
+          {profileElements.description && <p>{profileElements.description}</p>}
           <br></br>
           <div
             style={{
