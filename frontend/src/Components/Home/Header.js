@@ -23,7 +23,7 @@ const Header = () => {
             className="text-white d-flex align-items-center text-decoration-none"
             style={{ display: "flex", alignItem: "center" }}
             href="#home">
-            <img src={logo} style={{ width: "50px" }} alt="logo" />
+            <img src={logo} style={{ width: "45px", borderRadius: "50%" }} alt="logo" />
             &nbsp; &nbsp;<h4 className="mb-0">BeParents</h4>
           </Navbar.Brand>
         </Link>
