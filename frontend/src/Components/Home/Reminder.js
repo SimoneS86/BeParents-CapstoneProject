@@ -9,12 +9,13 @@ const Reminder = ({ reminder }) => {
   const handleCheckboxChange = (e) => {
     setIsChecked(e.target.checked);
   };
+
   return (
     <Container className="userContainer mt-2 mb-2">
       <div className="row" style={{ marginBottom: "0px" }}>
         <div className="left">
           <span>
-            <p>{reminder.date}</p>
+            <h4 className="text-white">{reminder.date}</h4>
           </span>
         </div>
         <div className="right">
@@ -67,4 +68,5 @@ const Reminder = ({ reminder }) => {
     </Container>
   );
 };
+
 export default Reminder;

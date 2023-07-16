@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Button, Collapse, Container } from "react-bootstrap";
-import profile from "./../../img/profile.jpg";
 import { AiOutlineEdit } from "react-icons/ai";
 import { MdDeleteOutline } from "react-icons/md";
 
@@ -34,10 +33,10 @@ const Post = ({ post }) => {
       <Container>
         <p>{post.content}</p>
         <br></br>
-        <Button className=" bg-transparent mb-1 " style={{ fontSize: "12px" }}>
+        <Button className=" bg-transparent mb-1 p-2 " style={{ fontSize: "12px" }}>
           Add Comment
         </Button>
-        <Button className="bg-transparent mb-1 " style={{ fontSize: "12px" }} onClick={toggleComments}>
+        <Button className="bg-transparent mb-1 p-2 " style={{ fontSize: "12px" }} onClick={toggleComments}>
           {showComments ? "Hide Comments" : "Show Comments"}
         </Button>
         <div style={{ display: "flex", alignItems: "center" }}>
@@ -89,30 +88,9 @@ const Post = ({ post }) => {
                     {/* <p>{post.lastUpdate}</p> */}
                   </div>
                 </div>
-                {/* <img
-                  className="thumbnail-image mb-2"
-                  style={{ width: "30px", height: "30px", borderRadius: "50%" }}
-                  src={profile}
-                  alt="user pic"
-                /> */}
                 <p>{comment.content}</p>
                 <hr />
-                {/* <p>{comment.publicationDate}</p> */}
               </Container>
-
-              // <div
-              //   key={comment.id}
-              //   className="comment"
-              //   style={{ display: "flex", alignItems: "center", marginBottom: "10px" }}>
-              //   <img
-              //     className="comment-thumbnail-image"
-              //     style={{ width: "30px", height: "30px", borderRadius: "50%", marginRight: "10px" }}
-              //     src={profile}
-              //     alt="user pic"
-              //   />
-              //   <p>{comment.content}</p>
-              //   <p>{comment.publicationDate}</p>
-              // </div>
             ))}
           </p>
         </Collapse>
@@ -120,4 +98,5 @@ const Post = ({ post }) => {
     </Container>
   );
 };
+
 export default Post;

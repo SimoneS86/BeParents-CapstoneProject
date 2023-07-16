@@ -1,36 +1,15 @@
-import profile from "./../../img/profile.jpg";
 import { Button, Container } from "react-bootstrap";
 import { SlUserFollow } from "react-icons/sl";
 import { AiOutlineEdit } from "react-icons/ai";
 import { MdDeleteOutline } from "react-icons/md";
 import MyTabs from "./ProfileTab";
-import ProfileElement from "./profileElement";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { getPostsById } from "../../redux/actions/post";
-import { getRemindersById } from "../../redux/actions/reminder";
-import { getFollowedByStndId, getFollowersByProId } from "../../redux/actions/followElement";
 import { getUserById } from "../../redux/actions/profileElement";
 
 const Profile = () => {
   const profileElements = useSelector((state) => state.profileElements);
   const dispatch = useDispatch();
-
-  // useEffect(() => {
-  //   dispatch(getPostsById());
-  // }, []);
-
-  // useEffect(() => {
-  //   dispatch(getRemindersById());
-  // }, []);
-
-  // useEffect(() => {
-  //   dispatch(getFollowedByStndId());
-  // }, []);
-
-  // useEffect(() => {
-  //   dispatch(getFollowersByProId());
-  // }, []);
 
   useEffect(() => {
     dispatch(getUserById());

@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import profile from "./../../img/profile.jpg";
 import logo from "./../../img/logo2.jpg";
 import "./Home.css";
 import { Navbar, Nav, NavDropdown } from "react-bootstrap";
@@ -15,6 +14,7 @@ const Header = () => {
   useEffect(() => {
     dispatch(getUserById());
   }, []);
+
   return (
     <>
       <Navbar className="navbarMenu px-4  py-1 d-flex justify-content-between m-3" expand="lg">

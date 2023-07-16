@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Form, Button } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./user.css";
 import { useDispatch } from "react-redux";
 import { login } from "../../redux/actions/auth";
@@ -9,12 +9,14 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("Submitted:", { email, password });
     const body = { email, password };
     dispatch(login(JSON.stringify(body)));
+    navigate("/");
   };
   return (
     <Form onSubmit={handleSubmit} style={{ height: "70vh" }}>
@@ -43,16 +45,15 @@ const Login = () => {
       </Form.Group>
       <br></br>
       <br></br>
-      {/* <Link to="/"> */}
-      <Button className=" bg-transparent p-3 pr-2 " type="submit">
+
+      <Button className=" bg-transparent p-2 mb-2" type="submit">
         LOG IN
       </Button>
-      {/* </Link> */}
       <Link to="/signup">
-        <Button className=" bg-transparent ">Sign Up Standard</Button>
+        <Button className=" bg-transparent p-2 mb-2">Sign Up Standard</Button>
       </Link>
       <Link to="/professional-signup">
-        <Button className=" bg-transparent ">Sign Up Professional</Button>
+        <Button className=" bg-transparent p-2 mb-2">Sign Up Professional</Button>
       </Link>
     </Form>
   );
