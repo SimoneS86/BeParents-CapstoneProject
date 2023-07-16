@@ -18,7 +18,7 @@ const Post = ({ post }) => {
           <img
             className="thumbnail-image"
             style={{ width: "55px", height: "55px", borderRadius: "50%" }}
-            src={profile}
+            src={post.user.picture}
             alt="user pic"
           />
           <span>
@@ -26,7 +26,7 @@ const Post = ({ post }) => {
             {post.user.profession && <p>{post.user.profession}</p>}
           </span>
         </div>
-        <div className="right">
+        <div className="right mt-2">
           <p>{post.publicationDate}</p>
           {/* <p>{post.lastUpdate}</p> */}
         </div>
@@ -34,37 +34,39 @@ const Post = ({ post }) => {
       <Container>
         <p>{post.content}</p>
         <br></br>
-        <Button className=" bg-transparent mb-1 ">Adds Comments</Button>
-        <Button className="bg-transparent mb-1" onClick={toggleComments}>
+        <Button className=" bg-transparent mb-1 " style={{ fontSize: "12px" }}>
+          Add Comment
+        </Button>
+        <Button className="bg-transparent mb-1 " style={{ fontSize: "12px" }} onClick={toggleComments}>
           {showComments ? "Hide Comments" : "Show Comments"}
         </Button>
-        {/* <div style={{ display: "flex", alignItems: "center" }}> */}
-        <Button
-          className="bg-transparent mt-1 mb-2"
-          style={{
-            borderRadius: "50%",
-            height: "40px",
-            width: "40px",
-            // display: "flex",
-            // alignItems: "center",
-            // justifyContent: "center",
-            // marginRight: "10px",
-          }}>
-          <AiOutlineEdit style={{ fontSize: "20px" }} />
-        </Button>
-        <Button
-          className="bg-transparent mt-1 mb-2"
-          style={{
-            borderRadius: "50%",
-            height: "40px",
-            width: "40px",
-            // display: "flex",
-            // alignItems: "center",
-            // justifyContent: "center",
-          }}>
-          <MdDeleteOutline style={{ fontSize: "20px" }} />
-        </Button>
-        {/* </div> */}
+        <div style={{ display: "flex", alignItems: "center" }}>
+          <Button
+            className="bg-transparent mt-1 mb-2"
+            style={{
+              borderRadius: "50%",
+              height: "40px",
+              width: "40px",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              // marginRight: "10px",
+            }}>
+            <AiOutlineEdit style={{ fontSize: "20px" }} />
+          </Button>
+          <Button
+            className="bg-transparent mt-1 mb-2"
+            style={{
+              borderRadius: "50%",
+              height: "40px",
+              width: "40px",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}>
+            <MdDeleteOutline style={{ fontSize: "20px" }} />
+          </Button>
+        </div>
         <Collapse in={showComments}>
           <p>
             {post.comments.map((comment) => (
@@ -73,16 +75,16 @@ const Post = ({ post }) => {
                   <div className="left">
                     <img
                       className="thumbnail-image"
-                      style={{ width: "35px", height: "35px", borderRadius: "50%" }}
-                      src={profile}
+                      style={{ width: "40px", height: "40px", borderRadius: "50%" }}
+                      src={comment.user.picture}
                       alt="user pic"
                     />
                     <span>
-                      <h3>{`${comment.user.name} ${comment.user.surname}`}</h3>
+                      <h5>{`${comment.user.name} ${comment.user.surname}`}</h5>
                       {comment.user.profession && <p>{comment.user.profession}</p>}
                     </span>
                   </div>
-                  <div className="right">
+                  <div className="right mt-2">
                     <p>{comment.publicationDate}</p>
                     {/* <p>{post.lastUpdate}</p> */}
                   </div>
@@ -94,8 +96,10 @@ const Post = ({ post }) => {
                   alt="user pic"
                 /> */}
                 <p>{comment.content}</p>
+                <hr />
                 {/* <p>{comment.publicationDate}</p> */}
               </Container>
+
               // <div
               //   key={comment.id}
               //   className="comment"

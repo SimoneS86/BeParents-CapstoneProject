@@ -1,10 +1,14 @@
 package beParentsApp.services;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -40,6 +44,17 @@ public class UserService {
 		return usersRepo.findAll(pageable);
 	}
 
+//	public Page<Post> findPostsByUserId(UUID userId, int page, int size, String sortBy) {
+//		if (size < 0)
+//			size = 0;
+//		if (size > 100)
+//			size = 100;
+//
+//		Pageable pageable = PageRequest.of(page, size, Sort.by(sortBy).descending().and(Sort.by("lastUpdate")));
+//
+//		return postRepo.findByUserId(userId, pageable);
+//	}
+
 	public Page<Post> findPostsByUserId(UUID userId, int page, int size, String sortBy) {
 		if (size < 0)
 			size = 0;
@@ -48,7 +63,12 @@ public class UserService {
 
 		Pageable pageable = PageRequest.of(page, size, Sort.by(sortBy).descending().and(Sort.by("lastUpdate")));
 
-		return postRepo.findByUserId(userId, pageable);
+		Page<Post> resultPage = postRepo.findByUserId(userId, pageable);
+
+		List<Post> content = new ArrayList<>(resultPage.getContent());
+		content.sort(Comparator.comparing(Post::getLastUpdate).reversed());
+
+		return new PageImpl<>(content, pageable, resultPage.getTotalElements());
 	}
 
 	public Page<Reminder> findRemindersByUserId(UUID userId, int page, int size, String sortBy) {

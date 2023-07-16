@@ -1,13 +1,20 @@
-import React from "react";
+import React, { useEffect } from "react";
 import profile from "./../../img/profile.jpg";
 import logo from "./../../img/logo2.jpg";
 import "./Home.css";
 import { Navbar, Nav, NavDropdown } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../redux/actions/auth";
+import { getUserById } from "../../redux/actions/profileElement";
+
 const Header = () => {
+  const profileElements = useSelector((state) => state.profileElements);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getUserById());
+  }, []);
   return (
     <>
       <Navbar className="navbarMenu px-4  py-1 d-flex justify-content-between m-3" expand="lg">
@@ -26,7 +33,7 @@ const Header = () => {
               <img
                 className="thumbnail-image"
                 style={{ width: "35px", height: "35px", borderRadius: "50%" }}
-                src={profile}
+                src={profileElements.picture}
                 alt="user pic"
               />
             </Link>

@@ -34,7 +34,7 @@ public abstract class User implements UserDetails {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private UUID id;
-	// foto
+	private String picture;
 	private String name;
 	private String surname;
 	private String email;
@@ -50,6 +50,7 @@ public abstract class User implements UserDetails {
 	private List<Post> posts;
 
 	public User(String name, String surname, String email, String password) {
+		this.picture = "https://picsum.photos/200?random=1";
 		this.name = name;
 		this.surname = surname;
 		this.email = email;

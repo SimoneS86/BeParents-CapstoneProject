@@ -8,7 +8,7 @@ const FollowElement = ({ follow }) => {
         <img
           className="thumbnail-image"
           style={{ width: "55px", height: "55px", borderRadius: "50%" }}
-          src={profile}
+          src={follow.picture}
           alt="user pic"
         />
         <span>

@@ -44,7 +44,7 @@ const Profile = () => {
             <img
               className="thumbnail-image"
               style={{ width: "55px", height: "55px", borderRadius: "50%" }}
-              src={profile}
+              src={profileElements.picture}
               alt="user pic"
             />
             <span>
