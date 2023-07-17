@@ -1,4 +1,4 @@
-import { USER_LOGIN, USER_LOGOUT, GET_USER_DATA } from "../actions/auth";
+import { USER_LOGIN, USER_LOGOUT, GET_USER_DATA, POST_STANDARDUSER, POST_PROFESSIONALUSER } from "../actions/auth";
 //const initialState = ;
 const authReducer = (state = { token: null, userData: null }, action) => {
   switch (action.type) {
@@ -13,6 +13,16 @@ const authReducer = (state = { token: null, userData: null }, action) => {
         token: null,
       };
     case GET_USER_DATA:
+      return {
+        ...state,
+        userData: action.payload,
+      };
+    case POST_STANDARDUSER:
+      return {
+        ...state,
+        userData: action.payload,
+      };
+    case POST_PROFESSIONALUSER:
       return {
         ...state,
         userData: action.payload,

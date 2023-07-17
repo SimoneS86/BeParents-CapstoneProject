@@ -2,18 +2,22 @@ import React, { useState } from "react";
 import { Form, Button } from "react-bootstrap";
 import "./user.css";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { postProfessionalUser } from "../../redux/actions/auth";
+
 const ProfessionalSignup = () => {
-    const [name, setName] = useState('');
-  const [surname, setSurname] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [profession, setProfession] = useState('');
-  const [registrationNumber, setRegistrationNumber] = useState('');
-  const [description, setDescription] = useState('');
+  const [name, setName] = useState("");
+  const [surname, setSurname] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [profession, setProfession] = useState("");
+  const [registrationNumber, setRegistrationNumber] = useState("");
+  const [description, setDescription] = useState("");
+  const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Submitted:', {
+    const payload = {
       name,
       surname,
       email,
@@ -21,8 +25,8 @@ const ProfessionalSignup = () => {
       profession,
       registrationNumber,
       description,
-    });
-    // Add your form submission logic here
+    };
+    dispatch(postProfessionalUser(payload));
   };
   return (
     <Form onSubmit={handleSubmit}>
@@ -37,7 +41,8 @@ const ProfessionalSignup = () => {
           onChange={(e) => setName(e.target.value)}
         />
       </Form.Group>
-      <br></br><br></br>
+      <br></br>
+      <br></br>
       <Form.Group controlId="formSurname">
         <Form.Label>Surname</Form.Label>
         <Form.Control
@@ -48,7 +53,8 @@ const ProfessionalSignup = () => {
           onChange={(e) => setSurname(e.target.value)}
         />
       </Form.Group>
-      <br></br><br></br>
+      <br></br>
+      <br></br>
       <Form.Group controlId="formEmail">
         <Form.Label>Email</Form.Label>
         <Form.Control
@@ -59,7 +65,8 @@ const ProfessionalSignup = () => {
           onChange={(e) => setEmail(e.target.value)}
         />
       </Form.Group>
-      <br></br><br></br>
+      <br></br>
+      <br></br>
       <Form.Group controlId="formPassword">
         <Form.Label>Password</Form.Label>
         <Form.Control
@@ -70,7 +77,8 @@ const ProfessionalSignup = () => {
           onChange={(e) => setPassword(e.target.value)}
         />
       </Form.Group>
-      <br></br><br></br>
+      <br></br>
+      <br></br>
       <Form.Group controlId="formProfession">
         <Form.Label>Profession</Form.Label>
         <Form.Control
@@ -81,7 +89,8 @@ const ProfessionalSignup = () => {
           onChange={(e) => setProfession(e.target.value)}
         />
       </Form.Group>
-      <br></br><br></br>
+      <br></br>
+      <br></br>
       <Form.Group controlId="formRegistrationNumber">
         <Form.Label>Registration Number</Form.Label>
         <Form.Control
@@ -92,7 +101,8 @@ const ProfessionalSignup = () => {
           onChange={(e) => setRegistrationNumber(e.target.value)}
         />
       </Form.Group>
-      <br></br><br></br>
+      <br></br>
+      <br></br>
       <Form.Group controlId="formDescription">
         <Form.Label>Description</Form.Label>
         <Form.Control
@@ -103,14 +113,14 @@ const ProfessionalSignup = () => {
           onChange={(e) => setDescription(e.target.value)}
         />
       </Form.Group>
-      <br></br><br></br>
+      <br></br>
+      <br></br>
       <Button variant="primary" className=" bg-transparent " type="submit">
         Submit
       </Button>
       <Link to="/signup">
         <Button className=" bg-transparent ">Sign Up Standard</Button>
       </Link>
-     
     </Form>
   );
 };

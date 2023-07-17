@@ -37,7 +37,7 @@ const Header = () => {
                 alt="user pic"
               />
             </Link>
-            <NavDropdown className="ml-auto bg-gray" id="basic-nav-dropdown">
+            <NavDropdown className="ml-auto" id="basic-nav-dropdown">
               <Link to="/login">
                 <NavDropdown.Item href="#action/3.2" onClick={() => dispatch(logout())}>
                   Logout

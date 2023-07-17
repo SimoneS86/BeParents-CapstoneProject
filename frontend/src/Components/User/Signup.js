@@ -2,17 +2,28 @@ import React, { useState } from "react";
 import { Form, Button } from "react-bootstrap";
 import "./user.css";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { postStandardUser } from "../../redux/actions/auth";
+
 const Signup = () => {
   const [name, setName] = useState("");
   const [surname, setSurname] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Submitted:", { name, surname, email, password });
-    // Add your form submission logic here
+    const payload = {
+      name,
+      surname,
+      email,
+      password,
+    };
+    dispatch(postStandardUser(payload));
+    // console.log("Submitted:", { name, surname, email, password });
   };
+
   return (
     <Form onSubmit={handleSubmit}>
       <h2>Signup Standard</h2>
