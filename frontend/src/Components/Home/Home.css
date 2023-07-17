@@ -1,22 +1,27 @@
 .dropdown-menu {
   position: absolute;
-  left: -650% ;
-  border: 1px solid red;
+  left: -650% !important;
+  background: rgb(35, 35, 35) !important;
 }
-.dropdown-toggle{
-  color: #fff;
+.dropdown-toggle {
+  color: #fff !important;
 }
 .navbarMenu {
-  border-radius: 30px ;
+  border-radius: 30px;
   background: rgba(255, 255, 255, 0.05);
 }
 .navbar-brand,
 .basic-nav-dropdown {
-  color: #fff ;
+  color: rgb(35, 35, 35);
 }
 .dropdown-item {
-  color: black ;
+  color: #fff !important;
 }
+
+.dropdown-item:hover {
+  background-color: rgb(22, 22, 22) !important;
+}
+
 container {
   margin-bottom: 100px;
 }
@@ -32,7 +37,7 @@ container {
   margin-right: 20px;
 }
 .formSearch button {
-  padding: 12px ;
+  padding: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -40,7 +45,7 @@ container {
 .userContainer {
   background: rgba(255, 255, 255, 0.05);
   border-radius: 30px;
-  padding: 30px ;
+  padding: 30px;
 }
 .userContainer .row {
   display: flex;
@@ -62,13 +67,13 @@ container {
 .userContainer .row .left h3,
 .userContainer .row .right h3 {
   color: #fff;
-  margin-bottom: 0px ;
+  margin-bottom: 0px;
 }
 .userContainer .row .left p,
 .userContainer .row .right p,
 p {
   color: rgb(183, 178, 178);
-  margin-bottom: 0px ;
+  margin-bottom: 0px;
 }
 .userContainer .row .right {
   text-align: right;
@@ -82,29 +87,28 @@ p {
 }
 
 .container .nav-tabs {
-  display: flex ;
-  align-items: center ;
-  justify-content: space-between ;
-  width: 100% ;
-  border-bottom: none ;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  border-bottom: none;
 }
 .container .nav-item {
-  width: 30% ;
-  display: flex ;
-  align-items: center ;
-  justify-content: center ;
-
+  width: 30%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .container .nav-item a {
   width: 100%;
   border-radius: 10px;
-  border: 1px solid #0e6dfd ;
+  border: 1px solid #0e6dfd;
   background: rgba(255, 255, 255, 0.05);
   color: #fff;
 }
 .container .tab-pane {
   padding: 40px 0px;
-  border-top: none ;
+  border-top: none;
 }
 
 @media only screen and (max-width: 800px) {
@@ -112,16 +116,16 @@ p {
     padding: 20px 0px;
   }
   .formSearch {
-    margin-bottom: 0px ;
+    margin-bottom: 0px;
     width: 100%;
     flex-wrap: wrap;
   }
-  .formSearch  input{
+  .formSearch input {
     margin-right: 0px;
     margin-bottom: 20px;
   }
   .formSearch button {
-    padding: 5px ;
+    padding: 5px;
     width: 100%;
     margin-right: 0px;
   }
@@ -132,7 +136,7 @@ p {
     margin: 20px 0px;
   }
   .userContainer {
-    padding:20px 10px;
+    padding: 20px 10px;
   }
   .userContainer .row {
     margin-bottom: 20px;
@@ -145,7 +149,7 @@ p {
   .userContainer .row .right p {
     font-size: 10px;
   }
-  button{
+  button {
     padding: 4px;
     margin-bottom: 10px;
   }
@@ -154,16 +158,16 @@ p {
     width: 30px;
     height: 30px;
   }
-  .post{
+  .post {
     flex-wrap: wrap;
     margin-bottom: 50px;
   }
-  .post img{
+  .post img {
     width: 30px;
     height: 30px;
     margin-bottom: 20px;
   }
-  .container .nav-item{
+  .container .nav-item {
     width: 48%;
     margin-bottom: 10px;
   }

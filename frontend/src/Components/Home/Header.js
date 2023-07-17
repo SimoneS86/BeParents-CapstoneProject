@@ -37,18 +37,19 @@ const Header = () => {
                 alt="user pic"
               />
             </Link>
-            <NavDropdown className="ml-auto" id="basic-nav-dropdown">
+            <NavDropdown className="ml-auto bg-gray" id="basic-nav-dropdown">
+              <Link to="/login">
+                <NavDropdown.Item href="#action/3.2" onClick={() => dispatch(logout())}>
+                  Logout
+                </NavDropdown.Item>
+              </Link>
               <Link to="/login">
                 <NavDropdown.Item href="#action/3.1">Login</NavDropdown.Item>
               </Link>
               <Link to="/signup">
                 <NavDropdown.Item href="#action/3.2">Sign up</NavDropdown.Item>
               </Link>
-              <Link to="/login">
-                <NavDropdown.Item href="#action/3.2" onClick={() => dispatch(logout())}>
-                  Logout
-                </NavDropdown.Item>
-              </Link>
+
               <Link to="/professional-signup">
                 <NavDropdown.Item href="#action/3.2">Professional Signup</NavDropdown.Item>
               </Link>
