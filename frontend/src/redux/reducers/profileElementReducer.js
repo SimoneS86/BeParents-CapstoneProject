@@ -1,4 +1,4 @@
-import { DELETE_USER, GET_USERS, GET_USER_BY_ID, POST_USER, PUT_USER } from "../actions/profileElement";
+import { DELETE_USER, GET_USERS, GET_USER_BY_ID, PUT_USER } from "../actions/profileElement";
 
 const profileElementReducer = (state = [], action) => {
   switch (action.type) {
@@ -6,8 +6,6 @@ const profileElementReducer = (state = [], action) => {
       return action.payload;
     case GET_USER_BY_ID:
       return action.payload;
-    case POST_USER:
-      return [action.payload, ...state];
     case PUT_USER:
       return state.map((post) => {
         if (post._id !== action.id) {

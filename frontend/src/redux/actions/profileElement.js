@@ -53,32 +53,32 @@ export const getUserById = () => {
   };
 };
 
-export const postUser = (userData, userId, body) => {
-  return async (dispatch, getState) => {
-    const token = getState().auth.token;
-    try {
-      let resp = await fetch(`${BASE_USER_URL}/${userId}`, {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "application/json",
-        },
-        body,
-      });
-      if (resp.ok) {
-        let data = await resp.json();
-        data.user = userData;
-        dispatch({ type: POST_USER, payload: data });
-      } else {
-        console.log("error");
-      }
-    } catch (error) {
-      console.log(error);
-    } finally {
-      console.log("fetch loading finish");
-    }
-  };
-};
+// export const postUser = (userData, userId, body) => {
+//   return async (dispatch, getState) => {
+//     const token = getState().auth.token;
+//     try {
+//       let resp = await fetch(`${BASE_USER_URL}/${userId}`, {
+//         method: "POST",
+//         headers: {
+//           Authorization: `Bearer ${token}`,
+//           "Content-Type": "application/json",
+//         },
+//         body,
+//       });
+//       if (resp.ok) {
+//         let data = await resp.json();
+//         data.user = userData;
+//         dispatch({ type: POST_USER, payload: data });
+//       } else {
+//         console.log("error");
+//       }
+//     } catch (error) {
+//       console.log(error);
+//     } finally {
+//       console.log("fetch loading finish");
+//     }
+//   };
+// };
 
 export const putUser = (userData, userId, body) => {
   return async (dispatch, getState) => {

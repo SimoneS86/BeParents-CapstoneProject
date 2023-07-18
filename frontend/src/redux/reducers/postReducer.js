@@ -1,6 +1,6 @@
 import { DELETE_USER_POST, GET_POSTS, GET_POSTS_BY_ID, POST_USER_POST, PUT_USER_POST } from "../actions/post";
 
-const postsReducer = (state = [], action) => {
+const postsReducer = (state = null, action) => {
   switch (action.type) {
     case GET_POSTS:
       return action.payload;
@@ -18,7 +18,7 @@ const postsReducer = (state = [], action) => {
         };
       });
     case DELETE_USER_POST:
-      return state.filter((post) => post._id !== action.payload);
+      return { ...state, content: state.content.filter((post) => post.id !== action.payload) };
     default:
       return state;
   }

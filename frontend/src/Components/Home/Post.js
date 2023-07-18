@@ -2,12 +2,24 @@ import React, { useState } from "react";
 import { Button, Collapse, Container } from "react-bootstrap";
 import { AiOutlineEdit } from "react-icons/ai";
 import { MdDeleteOutline } from "react-icons/md";
+import { useDispatch, useSelector } from "react-redux";
+import { deleteUserPost } from "../../redux/actions/post";
+import { Navigate } from "react-router";
 
 const Post = ({ post }) => {
   const [showComments, setShowComments] = useState(false);
+  const currentUserId = useSelector((state) => state.auth.userData.id);
+  const dispatch = useDispatch();
 
   const toggleComments = () => {
     setShowComments(!showComments);
+  };
+
+  const isCurrentUserPost = post.user.id === currentUserId;
+
+  const handleDeletePost = () => {
+    dispatch(deleteUserPost(post.id));
+    // Navigate("/");
   };
 
   return (
@@ -39,33 +51,36 @@ const Post = ({ post }) => {
         <Button className="bg-transparent mb-1 p-2 " style={{ fontSize: "12px" }} onClick={toggleComments}>
           {showComments ? "Hide Comments" : "Show Comments"}
         </Button>
-        <div style={{ display: "flex", alignItems: "center" }}>
-          <Button
-            className="bg-transparent mt-1 mb-2"
-            style={{
-              borderRadius: "50%",
-              height: "40px",
-              width: "40px",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              // marginRight: "10px",
-            }}>
-            <AiOutlineEdit style={{ fontSize: "20px" }} />
-          </Button>
-          <Button
-            className="bg-transparent mt-1 mb-2"
-            style={{
-              borderRadius: "50%",
-              height: "40px",
-              width: "40px",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-            }}>
-            <MdDeleteOutline style={{ fontSize: "20px" }} />
-          </Button>
-        </div>
+        {isCurrentUserPost && (
+          <div style={{ display: "flex", alignItems: "center" }}>
+            <Button
+              className="bg-transparent mt-1 mb-2"
+              style={{
+                borderRadius: "50%",
+                height: "40px",
+                width: "40px",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                // marginRight: "10px",
+              }}>
+              <AiOutlineEdit style={{ fontSize: "20px" }} />
+            </Button>
+            <Button
+              className="bg-transparent mt-1 mb-2"
+              style={{
+                borderRadius: "50%",
+                height: "40px",
+                width: "40px",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+              onClick={handleDeletePost}>
+              <MdDeleteOutline style={{ fontSize: "20px" }} />
+            </Button>
+          </div>
+        )}
         <Collapse in={showComments}>
           <p>
             {post.comments.map((comment) => (
