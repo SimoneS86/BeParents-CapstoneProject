@@ -9,10 +9,7 @@ import ProfessionalSignup from "./Components/User/Professional";
 import HomePage from "./Components/Home/Index";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { getPosts, getPostsById } from "./redux/actions/post";
 import { BrowserRouter } from "react-router-dom";
-import { getReminders, getRemindersById } from "./redux/actions/reminder";
-import { getFollowedByStndId } from "./redux/actions/followElement";
 import { getUserData } from "./redux/actions/auth";
 
 function App() {
@@ -24,18 +21,6 @@ function App() {
       dispatch(getUserData());
     }
   }, [token]);
-
-  // useEffect(() => {
-  //   dispatch(getReminders());
-  // }, []);
-
-  // useEffect(() => {
-  //   dispatch(getRemindersById());
-  // }, []);
-
-  // useEffect(() => {
-  //   dispatch(getFollowedByStndId());
-  // }, []);
 
   return (
     <BrowserRouter>

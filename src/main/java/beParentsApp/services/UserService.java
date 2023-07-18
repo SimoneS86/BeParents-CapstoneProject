@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -71,6 +72,18 @@ public class UserService {
 		return new PageImpl<>(content, pageable, resultPage.getTotalElements());
 	}
 
+//	public Page<Reminder> findRemindersByUserId(UUID userId, int page, int size, String sortBy) {
+//		if (size < 0)
+//			size = 0;
+//		if (size > 100)
+//			size = 100;
+//
+//
+//		Pageable pageable = PageRequest.of(page, size, Sort.by(sortBy));
+//
+//		return reminderRepo.findByUserId(userId, pageable);
+//	}
+
 	public Page<Reminder> findRemindersByUserId(UUID userId, int page, int size, String sortBy) {
 		if (size < 0)
 			size = 0;
@@ -81,7 +94,13 @@ public class UserService {
 
 		Pageable pageable = PageRequest.of(page, size, Sort.by(sortBy));
 
-		return reminderRepo.findByUserId(today, userId, pageable);
+		Page<Reminder> reminders = reminderRepo.findByUserId(userId, pageable);
+		List<Reminder> filteredReminders = reminders.stream()
+				.filter(reminder -> reminder.getDate().isAfter(today) || reminder.getDate().isEqual(today))
+				.sorted(Comparator.comparing(Reminder::getDate).reversed()) // Ordine inverso in base alla data
+				.collect(Collectors.toList());
+
+		return new PageImpl<>(filteredReminders, pageable, filteredReminders.size());
 	}
 
 //	public Page<Reminder> findRemindersByUserIdAndDate(UUID userId, LocalDate date, int page, int size, String sortBy) {
