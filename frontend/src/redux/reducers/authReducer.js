@@ -11,6 +11,7 @@ const authReducer = (state = { token: null, userData: null }, action) => {
       return {
         ...state,
         token: null,
+        userData: null,
       };
     case GET_USER_DATA:
       return {

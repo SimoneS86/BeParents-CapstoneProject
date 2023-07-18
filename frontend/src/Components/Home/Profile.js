@@ -4,16 +4,34 @@ import { AiOutlineEdit } from "react-icons/ai";
 import { MdDeleteOutline } from "react-icons/md";
 import MyTabs from "./ProfileTab";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { getUserById } from "../../redux/actions/profileElement";
 
 const Profile = () => {
-  const profileElements = useSelector((state) => state.profileElements);
+  const user = useSelector((state) => state.auth.userData);
   const dispatch = useDispatch();
 
+  // useEffect(() => {
+  //   dispatch(getUserById());
+  // }, []);
+
+  const [name, setName] = useState("");
+  const [surname, setSurname] = useState("");
+  const [picture, setPicture] = useState("");
+  const [profession, setProfession] = useState("");
+  const [registrationNumber, setRegistrationNumber] = useState("");
+  const [description, setDescription] = useState("");
+
   useEffect(() => {
-    dispatch(getUserById());
-  }, []);
+    if (user) {
+      setName(user ? user.name : "");
+      setSurname(user ? user.surname : "");
+      setPicture(user ? user.picture : "");
+      setProfession(user ? user.profession : "");
+      setRegistrationNumber(user ? user.registrationNumber : "");
+      setDescription(user ? user.description : "");
+    }
+  }, [user]);
 
   return (
     <div>
@@ -23,18 +41,18 @@ const Profile = () => {
             <img
               className="thumbnail-image"
               style={{ width: "55px", height: "55px", borderRadius: "50%" }}
-              src={profileElements.picture}
+              src={picture}
               alt="user pic"
             />
             <span>
-              <h3>{`${profileElements.name} ${profileElements.surname}`}</h3>
-              {profileElements.profession && <p>{profileElements.profession}</p>}
-              {profileElements.registrationNumber && <p>{profileElements.registrationNumber}</p>}
+              <h3>{`${name} ${surname}`}</h3>
+              {profession && <p>{profession}</p>}
+              {registrationNumber && <p>{registrationNumber}</p>}
             </span>
           </div>
         </div>
         <Container>
-          {profileElements.description && <p>{profileElements.description}</p>}
+          {description && <p>{description}</p>}
           <br></br>
           <div
             style={{

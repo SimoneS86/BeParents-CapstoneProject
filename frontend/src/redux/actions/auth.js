@@ -26,7 +26,6 @@ export const login = (body) => {
       if (resp.ok) {
         let data = await resp.json();
         dispatch({ type: USER_LOGIN, payload: data.accessToken });
-      } else {
         console.log("error");
       }
     } catch (error) {

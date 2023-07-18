@@ -18,7 +18,9 @@ const MyTabs = () => {
   const reminders = useSelector((state) => state.reminders);
   const posts = useSelector((state) => state.posts);
   const followElements = useSelector((state) => state.followElements);
+  const userData = useSelector((state) => state.auth.userData);
   const dispatch = useDispatch();
+
   const handleCheckboxChange = (e) => {
     setIsChecked(e.target.checked);
   };
@@ -39,13 +41,19 @@ const MyTabs = () => {
     dispatch(getRemindersById());
   }, []);
 
-  useEffect(() => {
-    dispatch(getFollowedByStndId());
-  }, []);
+  // useEffect(() => {
+  //   dispatch(getFollowedByStndId());
+  // }, []);
+
+  // useEffect(() => {
+  //   dispatch(getFollowersByProId());
+  // }, []);
 
   useEffect(() => {
-    dispatch(getFollowersByProId());
-  }, []);
+    if (userData) {
+      userData.profession ? dispatch(getFollowersByProId()) : dispatch(getFollowedByStndId());
+    }
+  }, [userData]);
 
   return (
     <Tab.Container activeKey={activeTab} className="tabDetail" onSelect={handleTabSelect}>
@@ -78,7 +86,7 @@ const MyTabs = () => {
               PUBLISH POST
             </Button>
           </Form>
-          {posts.content && posts.content.map((post) => <Post key={post.id} post={post} />)}
+          {posts && posts.content.map((post) => <Post key={post.id} post={post} />)}
         </Tab.Pane>
         {/* tab 2 content here ========= */}
 

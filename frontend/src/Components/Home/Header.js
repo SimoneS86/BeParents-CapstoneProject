@@ -8,12 +8,12 @@ import { logout } from "../../redux/actions/auth";
 import { getUserById } from "../../redux/actions/profileElement";
 
 const Header = () => {
-  const profileElements = useSelector((state) => state.profileElements);
+  const user = useSelector((state) => state.auth.userData);
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(getUserById());
-  }, []);
+  // useEffect(() => {
+  //   dispatch(getUserById());
+  // }, []);
 
   return (
     <>
@@ -33,7 +33,7 @@ const Header = () => {
               <img
                 className="thumbnail-image"
                 style={{ width: "35px", height: "35px", borderRadius: "50%" }}
-                src={profileElements.picture}
+                src={user && user.picture}
                 alt="user pic"
               />
             </Link>

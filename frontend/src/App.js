@@ -20,7 +20,9 @@ function App() {
   const token = useSelector((state) => state.auth.token);
 
   useEffect(() => {
-    dispatch(getUserData());
+    if (token) {
+      dispatch(getUserData());
+    }
   }, [token]);
 
   // useEffect(() => {

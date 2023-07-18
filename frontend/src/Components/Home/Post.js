@@ -1,25 +1,29 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Button, Collapse, Container } from "react-bootstrap";
 import { AiOutlineEdit } from "react-icons/ai";
 import { MdDeleteOutline } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteUserPost } from "../../redux/actions/post";
-import { Navigate } from "react-router";
 
 const Post = ({ post }) => {
   const [showComments, setShowComments] = useState(false);
-  const currentUserId = useSelector((state) => state.auth.userData.id);
+  const currentUser = useSelector((state) => state.auth.userData);
   const dispatch = useDispatch();
+  const [isCurrentUserPost, setIsCurrentUserPost] = useState(false);
 
+  useEffect(() => {
+    if (currentUser && post.user.id === currentUser.id) {
+      setIsCurrentUserPost(true);
+    }
+  }, [currentUser]);
   const toggleComments = () => {
     setShowComments(!showComments);
   };
 
-  const isCurrentUserPost = post.user.id === currentUserId;
+  //const isCurrentUserPost = post.user.id === currentUserId;
 
   const handleDeletePost = () => {
     dispatch(deleteUserPost(post.id));
-    // Navigate("/");
   };
 
   return (

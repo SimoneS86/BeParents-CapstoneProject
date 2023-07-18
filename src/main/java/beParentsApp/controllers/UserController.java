@@ -1,6 +1,5 @@
 package beParentsApp.controllers;
 
-import java.time.LocalDate;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,16 +58,16 @@ public class UserController {
 		return userService.findRemindersByUserId(userId, page, size, sortBy);
 	}
 
-	@GetMapping("/{userId}/remindersByDate/")
-	public Page<Reminder> getRemindersByUserAndDate(@PathVariable UUID userId,
-			@RequestParam(required = false) LocalDate date, @RequestParam(defaultValue = "0") int page,
-			@RequestParam(defaultValue = "10") int size, @RequestParam(defaultValue = "id") String sortBy) {
-		if (date == null) {
-			// Se la data non viene passata, utilizza la LocalDate.now().
-			date = LocalDate.now();
-		}
-		return userService.findRemindersByUserIdAndDate(userId, date, page, size, sortBy);
-	}
+//	@GetMapping("/{userId}/remindersByDate/")
+//	public Page<Reminder> getRemindersByUserAndDate(@PathVariable UUID userId,
+//			@RequestParam(required = false) LocalDate date, @RequestParam(defaultValue = "0") int page,
+//			@RequestParam(defaultValue = "10") int size, @RequestParam(defaultValue = "id") String sortBy) {
+//		if (date == null) {
+//			// Se la data non viene passata, utilizza la LocalDate.now().
+//			date = LocalDate.now();
+//		}
+//		return userService.findRemindersByUserIdAndDate(userId, date, page, size, sortBy);
+//	}
 
 	@DeleteMapping("/{userId}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
