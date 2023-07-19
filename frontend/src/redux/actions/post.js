@@ -56,11 +56,11 @@ export const getPostsById = () => {
   };
 };
 
-export const postUserPost = (userData, postId, body) => {
+export const postUserPost = (userData, body) => {
   return async (dispatch, getState) => {
     const token = getState().auth.token;
     try {
-      let resp = await fetch(`${BASE_POST_URL}/${postId}`, {
+      let resp = await fetch(`${BASE_POST_URL}`, {
         method: "POST",
         headers: {
           Authorization: `Bearer ${token}`,
@@ -83,7 +83,34 @@ export const postUserPost = (userData, postId, body) => {
   };
 };
 
-export const putUserPost = (userData, postId, body) => {
+// export const putUserPost = (userData, postId, body) => {
+//   return async (dispatch, getState) => {
+//     const token = getState().auth.token;
+//     try {
+//       let resp = await fetch(`${BASE_POST_URL}/${postId}`, {
+//         method: "PUT",
+//         headers: {
+//           Authorization: `Bearer ${token}`,
+//           "Content-Type": "application/json",
+//         },
+//         body,
+//       });
+//       if (resp.ok) {
+//         let data = await resp.json();
+//         data.user = userData;
+//         dispatch({ type: PUT_USER_POST, id: postId, payload: data });
+//       } else {
+//         console.log("error");
+//       }
+//     } catch (error) {
+//       console.log(error);
+//     } finally {
+//       console.log("fetch loading finish");
+//     }
+//   };
+// };
+
+export const putUserPost = (postId, body) => {
   return async (dispatch, getState) => {
     const token = getState().auth.token;
     try {
@@ -93,11 +120,10 @@ export const putUserPost = (userData, postId, body) => {
           Authorization: `Bearer ${token}`,
           "Content-Type": "application/json",
         },
-        body,
+        body: JSON.stringify(body),
       });
       if (resp.ok) {
         let data = await resp.json();
-        data.user = userData;
         dispatch({ type: PUT_USER_POST, id: postId, payload: data });
       } else {
         console.log("error");

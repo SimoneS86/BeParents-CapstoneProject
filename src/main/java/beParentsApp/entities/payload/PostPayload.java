@@ -17,13 +17,6 @@ public class PostPayload {
 	@NotNull(message = "The userId is required")
 	UUID userId;
 
-//	public PostPayload(String content, UUID userId) {
-//		super();
-//		this.publicationDate = LocalDateTime.now();
-//		this.content = content;
-//		this.userId = userId;
-//	}
-
 	public PostPayload(LocalDateTime publicationDate, String content, UUID userId) {
 		super();
 		this.publicationDate = publicationDate;

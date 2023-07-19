@@ -11,10 +11,6 @@ const Profile = () => {
   const user = useSelector((state) => state.auth.userData);
   const dispatch = useDispatch();
 
-  // useEffect(() => {
-  //   dispatch(getUserById());
-  // }, []);
-
   const [name, setName] = useState("");
   const [surname, setSurname] = useState("");
   const [picture, setPicture] = useState("");

@@ -7,16 +7,21 @@ const postsReducer = (state = null, action) => {
     case GET_POSTS_BY_ID:
       return action.payload;
     case POST_USER_POST:
-      return [action.payload, ...state];
+      return { ...state, content: [action.payload, ...state.content] };
     case PUT_USER_POST:
-      return state.map((post) => {
-        if (post._id !== action.id) {
-          return post;
-        }
-        return {
-          ...action.payload,
-        };
-      });
+      return {
+        ...state,
+        content: state.content.map((post) => {
+          if (post.id !== action.id) {
+            return post;
+          }
+          return {
+            ...post,
+            ...action.payload,
+          };
+        }),
+      };
+
     case DELETE_USER_POST:
       return { ...state, content: state.content.filter((post) => post.id !== action.payload) };
     default:

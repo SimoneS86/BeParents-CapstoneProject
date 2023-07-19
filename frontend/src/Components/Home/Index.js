@@ -3,7 +3,6 @@ import { Form, Button } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
 import { getPosts } from "../../redux/actions/post";
 import Post from "./Post";
-import { getUserById } from "../../redux/actions/profileElement";
 
 const HomePage = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -17,10 +16,6 @@ const HomePage = () => {
       dispatch(getPosts());
     }
   }, [accessToken]);
-
-  // useEffect(() => {
-  //   dispatch(getUserById());
-  // }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -89,8 +84,6 @@ const HomePage = () => {
       ) : (
         <p>No posts found.</p>
       )}
-
-      {/* Resto del tuo codice... */}
     </>
   );
 };
