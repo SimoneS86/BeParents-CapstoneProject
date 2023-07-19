@@ -20,13 +20,6 @@ public class CommentPayload {
 	@NotNull(message = "The postId is required")
 	UUID postId;
 
-//	public CommentPayload(String content, UUID userId, UUID postId) {
-//		super();
-//		this.content = content;
-//		this.userId = userId;
-//		this.postId = postId;
-//	}
-
 	public CommentPayload(LocalDateTime publicationDate, String content, UUID userId, UUID postId) {
 		super();
 		this.publicationDate = publicationDate;
