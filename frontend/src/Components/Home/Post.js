@@ -21,13 +21,12 @@ const Post = ({ post }) => {
   const [showCommentModal, setShowCommentModal] = useState(false);
   const currentUser = useSelector((state) => state.auth.userData);
   const [isCurrentUserPost, setIsCurrentUserPost] = useState(false);
-  const dispatch = useDispatch();
   const [showDeleteCommentModal, setShowDeleteCommentModal] = useState(false);
   const [commentToDelete, setCommentToDelete] = useState(null);
-  //prova
   const [showEditCommentModal, setShowEditCommentModal] = useState(false);
   const [commentToEdit, setCommentToEdit] = useState(null);
   const [updatedComment, setUpdatedComment] = useState("");
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (currentUser && post.user.id === currentUser.id) {
@@ -111,7 +110,6 @@ const Post = ({ post }) => {
       closeDeleteCommentModal();
     }
   };
-  //prova
 
   const openEditCommentModal = (commentId) => {
     const comment = post.comments.find((comment) => comment.id === commentId);
@@ -155,7 +153,7 @@ const Post = ({ post }) => {
           </span>
         </div>
         <div className="right mt-2">
-          <p>{post.publicationDate}</p>
+          <p>{post.publicationDate.length > 20 ? post.publicationDate.slice(0, 19) : post.publicationDate}</p>
           {/* <p>{post.lastUpdate}</p> */}
         </div>
       </div>
@@ -216,7 +214,11 @@ const Post = ({ post }) => {
                     </span>
                   </div>
                   <div className="right mt-2">
-                    <p>{comment.publicationDate}</p>
+                    <p>
+                      {comment.publicationDate.length > 20
+                        ? comment.publicationDate.slice(0, 19)
+                        : comment.publicationDate}
+                    </p>
                     {/* <p>{post.lastUpdate}</p> */}
                   </div>
                 </div>

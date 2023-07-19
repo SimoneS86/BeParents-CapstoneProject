@@ -18,7 +18,7 @@ const remindersReducer = (state = [], action) => {
         };
       });
     case DELETE_REMINDER:
-      return state.filter((post) => post._id !== action.payload);
+      return { ...state, content: state.content.filter((reminder) => reminder.id !== action.payload) };
     default:
       return state;
   }

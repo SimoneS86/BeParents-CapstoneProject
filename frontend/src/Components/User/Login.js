@@ -1,15 +1,22 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Form, Button } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import "./user.css";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { login } from "../../redux/actions/auth";
+//prova
+import { resetPosts } from "../../redux/actions/post";
 
 const Login = () => {
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  //prova
+  useEffect(() => {
+    dispatch(resetPosts());
+  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();

@@ -7,7 +7,7 @@ import Post from "./Post";
 const HomePage = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredPosts, setFilteredPosts] = useState(null);
-  const posts = useSelector((state) => state.posts);
+  let posts = useSelector((state) => state.posts);
   const accessToken = useSelector((state) => state.auth.token);
   const dispatch = useDispatch();
 

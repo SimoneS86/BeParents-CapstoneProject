@@ -12,6 +12,11 @@ export const PUT_USER_POST = "PUT_USER_POST";
 export const PUT_USER_COMMENT = "PUT_USER_COMMENT";
 export const DELETE_USER_POST = "DELETE_USER_POST";
 export const DELETE_USER_COMMENT = "DELETE_USER_COMMENT";
+export const resetPosts = () => {
+  return {
+    type: "RESET_POSTS",
+  };
+};
 
 export const getPosts = () => {
   return async (dispatch, getState) => {

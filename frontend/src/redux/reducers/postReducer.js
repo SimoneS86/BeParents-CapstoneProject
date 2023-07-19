@@ -9,7 +9,9 @@ import {
   PUT_USER_COMMENT,
 } from "../actions/post";
 
-const postsReducer = (state = null, action) => {
+const initialState = null;
+
+const postsReducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_POSTS:
       return action.payload;
@@ -52,6 +54,8 @@ const postsReducer = (state = null, action) => {
       return { ...state, content: state.content.filter((post) => post.id !== action.payload) };
     case DELETE_USER_COMMENT:
       return { ...state, content: state.content.filter((comment) => comment.id !== action.payload) };
+    case "RESET_POSTS":
+      return initialState;
     default:
       return state;
   }

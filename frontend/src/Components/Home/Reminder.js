@@ -1,13 +1,19 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
 import { Button, Container, Form } from "react-bootstrap";
 import { AiOutlineEdit } from "react-icons/ai";
 import { MdDeleteOutline } from "react-icons/md";
+import { deleteReminder } from "../../redux/actions/reminder";
 
 const Reminder = ({ reminder }) => {
   const [isChecked, setIsChecked] = useState(false);
+  const dispatch = useDispatch();
 
   const handleCheckboxChange = (e) => {
     setIsChecked(e.target.checked);
+    if (e.target.checked) {
+      dispatch(deleteReminder(reminder.id));
+    }
   };
 
   return (
@@ -32,8 +38,8 @@ const Reminder = ({ reminder }) => {
       </div>
       <Container>
         <p>{reminder.content}</p>
-        <br></br>
-        <div
+
+        {/* <div
           style={{
             margin: "0px",
             display: "flex",
@@ -63,7 +69,7 @@ const Reminder = ({ reminder }) => {
             }}>
             <MdDeleteOutline style={{ fontSize: "20px" }} />
           </Button>
-        </div>
+        </div> */}
       </Container>
     </Container>
   );
