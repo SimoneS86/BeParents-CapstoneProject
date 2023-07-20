@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Button, Collapse, Container, Modal, Form } from "react-bootstrap";
 import { AiOutlineEdit } from "react-icons/ai";
 import { MdDeleteOutline } from "react-icons/md";
+import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
   deleteUserPost,
@@ -141,12 +142,14 @@ const Post = ({ post }) => {
     <Container className="userContainer mb-2">
       <div className="row">
         <div className="left">
-          <img
-            className="thumbnail-image"
-            style={{ width: "55px", height: "55px", borderRadius: "50%" }}
-            src={post.user.picture}
-            alt="user pic"
-          />
+          <Link to={`/visitedProfile/${post.user.id}`}>
+            <img
+              className="thumbnail-image"
+              style={{ width: "55px", height: "55px", borderRadius: "50%" }}
+              src={post.user.picture}
+              alt="user pic"
+            />
+          </Link>
           <span>
             <h3>{`${post.user.name} ${post.user.surname}`}</h3>
             {post.user.profession && <p>{post.user.profession}</p>}

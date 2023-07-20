@@ -7,6 +7,7 @@ const BASE_PROFESSIONALUSER_URL = "http://localhost:5001/api/auth/register/profe
 export const USER_LOGIN = "USER_LOGIN";
 export const USER_LOGOUT = "USER_LOGOUT";
 export const GET_USER_DATA = "GET_USER_DATA";
+export const DELETE_USER = "DELETE_USER";
 export const POST_STANDARDUSER = "POST_STANDARDUSER";
 export const POST_PROFESSIONALUSER = "POST_PROFESSIONALUSER";
 
@@ -50,6 +51,30 @@ export const getUserData = () => {
       if (resp.ok) {
         let data = await resp.json();
         dispatch({ type: GET_USER_DATA, payload: data });
+      } else {
+        console.log("error");
+      }
+    } catch (error) {
+      console.log(error);
+    } finally {
+      console.log("fetch loading finish");
+    }
+  };
+};
+
+export const deleteUser = (userId) => {
+  return async (dispatch, getState) => {
+    const token = getState().auth.token;
+    try {
+      let resp = await fetch(`${BASE_URL}/user/${userId}`, {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      });
+      if (resp.ok) {
+        dispatch({ type: DELETE_USER, payload: userId });
       } else {
         console.log("error");
       }

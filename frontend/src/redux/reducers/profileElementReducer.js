@@ -16,7 +16,7 @@ const profileElementReducer = (state = [], action) => {
         };
       });
     case DELETE_USER:
-      return state.filter((post) => post._id !== action.payload);
+      return { ...state, token: null, userData: null };
     default:
       return state;
   }

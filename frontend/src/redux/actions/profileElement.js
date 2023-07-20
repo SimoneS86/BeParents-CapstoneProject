@@ -29,12 +29,11 @@ export const getUsers = () => {
   };
 };
 
-export const getUserById = () => {
+export const getUserById = (userId) => {
   return async (dispatch, getState) => {
     const token = getState().auth.token;
-    const user = getState().auth.userData;
     try {
-      let resp = await fetch(`${BASE_USER_URL}/${user.id}`, {
+      let resp = await fetch(`${BASE_USER_URL}/${userId}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

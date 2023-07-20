@@ -7,6 +7,7 @@ import Login from "./Components/User/Login";
 import Signup from "./Components/User/Signup";
 import ProfessionalSignup from "./Components/User/Professional";
 import HomePage from "./Components/Home/Index";
+import VisitedProfile from "./Components/Home/VisitedProfile";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { BrowserRouter } from "react-router-dom";
@@ -31,6 +32,7 @@ function App() {
           <Route path="login" element={<Login />} />
           <Route path="signup" element={<Signup />} />
           <Route path="professional-signup" element={<ProfessionalSignup />} />
+          <Route path="visitedProfile/:userId" element={<VisitedProfile />} />
         </Route>
       </Routes>
     </BrowserRouter>

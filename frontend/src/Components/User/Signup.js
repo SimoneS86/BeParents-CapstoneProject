@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Form, Button } from "react-bootstrap";
 import "./user.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { postStandardUser } from "../../redux/actions/auth";
 
@@ -11,6 +11,7 @@ const Signup = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -22,6 +23,7 @@ const Signup = () => {
     };
     dispatch(postStandardUser(payload));
     // console.log("Submitted:", { name, surname, email, password });
+    navigate("/login");
   };
 
   return (

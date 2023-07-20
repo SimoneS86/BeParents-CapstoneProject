@@ -1,4 +1,11 @@
-import { USER_LOGIN, USER_LOGOUT, GET_USER_DATA, POST_STANDARDUSER, POST_PROFESSIONALUSER } from "../actions/auth";
+import {
+  USER_LOGIN,
+  USER_LOGOUT,
+  GET_USER_DATA,
+  DELETE_USER,
+  POST_STANDARDUSER,
+  POST_PROFESSIONALUSER,
+} from "../actions/auth";
 //const initialState = ;
 const authReducer = (state = { token: null, userData: null }, action) => {
   switch (action.type) {
@@ -41,8 +48,8 @@ const authReducer = (state = { token: null, userData: null }, action) => {
     //       ...action.payload,
     //     };
     //   });
-    // case DELETE_USER_POST:
-    //   return state.filter((post) => post._id !== action.payload);
+    case DELETE_USER:
+      return { ...state, token: null, userData: null };
     default:
       return state;
   }

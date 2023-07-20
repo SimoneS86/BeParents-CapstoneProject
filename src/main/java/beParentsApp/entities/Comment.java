@@ -28,7 +28,6 @@ public class Comment {
 	private LocalDateTime publicationDate;
 
 	@ManyToOne
-//	@JsonBackReference
 	private User user;
 
 	@ManyToOne

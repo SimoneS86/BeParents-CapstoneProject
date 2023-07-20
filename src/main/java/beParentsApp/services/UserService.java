@@ -61,6 +61,25 @@ public class UserService {
 		return new PageImpl<>(content, pageable, resultPage.getTotalElements());
 	}
 
+//	public Page<Reminder> findRemindersByUserId(UUID userId, int page, int size, String sortBy) {
+//		if (size < 0)
+//			size = 0;
+//		if (size > 100)
+//			size = 100;
+//
+//		LocalDate today = LocalDate.now();
+//
+//		Pageable pageable = PageRequest.of(page, size, Sort.by(sortBy));
+//
+//		Page<Reminder> reminders = reminderRepo.findByUserId(userId, pageable);
+//		List<Reminder> filteredReminders = reminders.stream()
+//				.filter(reminder -> reminder.getDate().isAfter(today) || reminder.getDate().isEqual(today))
+//				.sorted(Comparator.comparing(Reminder::getDate).reversed()) // Ordine inverso in base alla data
+//				.collect(Collectors.toList());
+//
+//		return new PageImpl<>(filteredReminders, pageable, filteredReminders.size());
+//	}
+
 	public Page<Reminder> findRemindersByUserId(UUID userId, int page, int size, String sortBy) {
 		if (size < 0)
 			size = 0;
@@ -69,12 +88,12 @@ public class UserService {
 
 		LocalDate today = LocalDate.now();
 
-		Pageable pageable = PageRequest.of(page, size, Sort.by(sortBy));
+		// Imposta l'ordinamento inverso per la proprietà sortBy
+		Pageable pageable = PageRequest.of(page, size, Sort.by(sortBy).descending());
 
 		Page<Reminder> reminders = reminderRepo.findByUserId(userId, pageable);
 		List<Reminder> filteredReminders = reminders.stream()
 				.filter(reminder -> reminder.getDate().isAfter(today) || reminder.getDate().isEqual(today))
-				.sorted(Comparator.comparing(Reminder::getDate).reversed()) // Ordine inverso in base alla data
 				.collect(Collectors.toList());
 
 		return new PageImpl<>(filteredReminders, pageable, filteredReminders.size());

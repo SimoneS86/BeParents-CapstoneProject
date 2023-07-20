@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Form, Button } from "react-bootstrap";
 import "./user.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { postProfessionalUser } from "../../redux/actions/auth";
 
@@ -14,6 +14,7 @@ const ProfessionalSignup = () => {
   const [registrationNumber, setRegistrationNumber] = useState("");
   const [description, setDescription] = useState("");
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -27,6 +28,7 @@ const ProfessionalSignup = () => {
       description,
     };
     dispatch(postProfessionalUser(payload));
+    navigate("/login");
   };
   return (
     <Form onSubmit={handleSubmit}>
