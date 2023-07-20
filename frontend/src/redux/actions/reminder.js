@@ -54,11 +54,11 @@ export const getRemindersById = () => {
   };
 };
 
-export const postReminder = (userData, reminderId, body) => {
+export const postReminder = (userData, body) => {
   return async (dispatch, getState) => {
     const token = getState().auth.token;
     try {
-      let resp = await fetch(`${BASE_REMINDER_URL}/${reminderId}`, {
+      let resp = await fetch(`${BASE_REMINDER_URL}`, {
         method: "POST",
         headers: {
           Authorization: `Bearer ${token}`,

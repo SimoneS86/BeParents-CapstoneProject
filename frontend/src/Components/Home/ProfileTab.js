@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { Tab, Nav, Form, Button, Container } from "react-bootstrap";
+import { Tab, Nav, Form, Button, Container, Modal } from "react-bootstrap";
+import DatePicker from "react-datepicker";
 import { AiOutlineEdit } from "react-icons/ai";
 import { MdDeleteOutline } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
@@ -7,8 +8,9 @@ import Reminder from "./Reminder";
 import Post from "./Post";
 import FollowElement from "./followElement";
 import { getPostsById, postUserPost } from "../../redux/actions/post";
-import { getRemindersById } from "../../redux/actions/reminder";
+import { getRemindersById, postReminder } from "../../redux/actions/reminder";
 import { getFollowedByStndId, getFollowersByProId } from "../../redux/actions/followElement";
+import "react-datepicker/dist/react-datepicker.css";
 
 const MyTabs = () => {
   const [activeTab, setActiveTab] = useState("tab1");
@@ -19,10 +21,46 @@ const MyTabs = () => {
   const posts = useSelector((state) => state.posts);
   const followElements = useSelector((state) => state.followElements);
   const userData = useSelector((state) => state.auth.userData);
+  const [showReminderModal, setShowReminderModal] = useState(false);
+  const [reminderDate, setReminderDate] = useState(new Date());
+  const [reminderText, setReminderText] = useState("");
   const dispatch = useDispatch();
+
+  const handleShowReminderModal = () => {
+    setShowReminderModal(true);
+  };
+
+  const handleCloseReminderModal = () => {
+    setShowReminderModal(false);
+  };
+
+  const handleReminderDateChange = (date) => {
+    setReminderDate(date);
+  };
+
+  const handleReminderTextChange = (e) => {
+    setReminderText(e.target.value);
+  };
 
   const handleCheckboxChange = (e) => {
     setIsChecked(e.target.checked);
+  };
+
+  const handleReminderSubmit = () => {
+    // Dispatch the postReminder action with the required data
+    const date = reminderDate.toISOString();
+    const userId = userData?.id;
+
+    if (reminderText && userId) {
+      const body = JSON.stringify({
+        date,
+        content: reminderText,
+        userId,
+      });
+      dispatch(postReminder(userData, body));
+      handleCloseReminderModal();
+      setReminderText("");
+    }
   };
 
   const handleSubmit = (e) => {
@@ -94,7 +132,9 @@ const MyTabs = () => {
         {/* tab 2 content here ========= */}
 
         <Tab.Pane eventKey="tab2">
-          <Button className="bg-transparent">ADD REMINDER</Button>
+          <Button className="bg-transparent" onClick={handleShowReminderModal}>
+            ADD REMINDER
+          </Button>
           {reminders.content && reminders.content.map((reminder) => <Reminder key={reminder.id} reminder={reminder} />)}
         </Tab.Pane>
 
@@ -106,6 +146,38 @@ const MyTabs = () => {
           </Container>
         </Tab.Pane>
       </Tab.Content>
+
+      {/* Reminder Modal */}
+      <Modal show={showReminderModal} onHide={handleCloseReminderModal} className="modal-dark">
+        <Modal.Header closeButton>
+          <Modal.Title>ADD REMINDER</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Form>
+            <Form.Group>
+              <Form.Label>Date</Form.Label>
+              <DatePicker selected={reminderDate} onChange={handleReminderDateChange} />
+            </Form.Group>
+            <Form.Group>
+              <Form.Label>Reminder Text</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Enter reminder text"
+                value={reminderText}
+                onChange={handleReminderTextChange}
+              />
+            </Form.Group>
+          </Form>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleCloseReminderModal}>
+            Cancel
+          </Button>
+          <Button variant="primary" onClick={handleReminderSubmit}>
+            Save Reminder
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </Tab.Container>
   );
 };
