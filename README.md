@@ -16,7 +16,7 @@ Benvenuti in BeParents, la piattaforma online dedicata ai neogenitori, con l'obi
 
 6. **Profili Professionali**: I professionisti specializzati nel settore della genitorialità, come pediatri, psicologi, nutrizionisti e altri esperti, hanno la possibilità di creare profili dedicati sulla piattaforma. Attraverso questi profili, i professionisti possono fornire informazioni, consigli e supporto personalizzato agli utenti di BeParents. I genitori avranno la possibilità di cercare e connettersi con i professionisti tramite la piattaforma, facilitando l'accesso a servizi professionali specializzati per affrontare le sfide e le necessità legate alla genitorialità.
 
-** - Inclusione dei file env.properties e env.local nel Progetto**:
+## Inclusione dei file env.properties e env.local nel Progetto:
 
 Nel progetto BeParents, la decisione di includere sia i file env.properties che env.local, nonostante sia consuetudine aggiungerli a .gitignore, è stata presa per facilitare la visibilità e l'accesso all'applicazione da parte delle persone interessate. Esaminiamo le ragioni dietro questa decisione:
 
