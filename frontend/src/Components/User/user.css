@@ -1,0 +1,27 @@
+label {
+  color: #fff;
+}
+form h2 {
+  color: #fff;
+  text-align: center;
+  margin: 20px 0px;
+}
+textarea{
+    height: 200px;
+}
+::placeholder {
+  color: rgb(174, 168, 168)!important;
+}
+
+button{
+    margin-right: 10px!important;
+    padding: 13px !important;
+}
+a{
+    text-decoration: none;
+}
+@media only screen and (max-width:800px){
+  button{
+    padding: 5px!important;
+  }
+}

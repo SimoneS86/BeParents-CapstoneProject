@@ -1,5 +1,6 @@
 package beParentsApp.services;
 
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 import beParentsApp.entities.Comment;
+import beParentsApp.entities.Post;
+import beParentsApp.entities.User;
 import beParentsApp.entities.payload.CommentPayload;
 import beParentsApp.exceptions.NotFoundException;
 import beParentsApp.repositories.CommentRepository;
@@ -30,13 +33,29 @@ public class CommentService {
 	@Autowired
 	PostRepository postRepo;
 
+//	@PostMapping("")
+//	@ResponseStatus(HttpStatus.CREATED)
+//	public Comment create(CommentPayload cp) {
+//		Comment newComment = new Comment(cp.getPublicationDate(), cp.getContent(),
+//				userRepo.findById(cp.getUserId()).orElseThrow(() -> new NotFoundException("User not found")),
+//				postRepo.findById(cp.getPostId()).orElseThrow(() -> new NotFoundException("Post not found")));
+//		return commentRepo.save(newComment);
+//	}
 	@PostMapping("")
 	@ResponseStatus(HttpStatus.CREATED)
 	public Comment create(CommentPayload cp) {
-		Comment newComment = new Comment(cp.getPublicationDate(), cp.getContent(),
-				userRepo.findById(cp.getUserId()).orElseThrow(() -> new NotFoundException("User not found")),
-				postRepo.findById(cp.getPostId()).orElseThrow(() -> new NotFoundException("Post not found")));
-		return commentRepo.save(newComment);
+		User user = userRepo.findById(cp.getUserId()).orElseThrow(() -> new NotFoundException("User not found"));
+
+		Post post = postRepo.findById(cp.getPostId()).orElseThrow(() -> new NotFoundException("Post not found"));
+
+		Comment newComment = new Comment(cp.getPublicationDate(), cp.getContent(), user, post);
+		Comment savedComment = commentRepo.save(newComment);
+
+		// Aggiorna lastUpdate del post con la data corrente
+		post.setLastUpdate(LocalDateTime.now());
+		postRepo.save(post);
+
+		return savedComment;
 	}
 
 	public Page<Comment> findAll(int page, int size, String sortBy) {

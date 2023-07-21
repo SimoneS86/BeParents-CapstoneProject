@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.CascadeType;
@@ -31,22 +30,16 @@ public class Post {
 	private UUID id;
 	private String content;
 	private LocalDateTime publicationDate;
+	private LocalDateTime lastUpdate;
 	@ManyToOne
-	@JsonBackReference
 	private User user;
 	@OneToMany(mappedBy = "post", cascade = CascadeType.ALL)
 	@JsonManagedReference
 	private List<Comment> comments;
 
-//	public Post(String content, User user) {
-//		this.publicationDate = LocalDateTime.now();
-//		this.content = content;
-//		this.comments = new ArrayList<>();
-//		this.user = user;
-//	}
-
 	public Post(LocalDateTime publicationDate, String content, User user) {
 		this.publicationDate = publicationDate;
+		this.lastUpdate = LocalDateTime.now();
 		this.content = content;
 		this.comments = new ArrayList<>();
 		this.user = user;

@@ -1,6 +1,9 @@
 package beParentsApp.entities;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import beParentsApp.utils.Profession;
 import beParentsApp.utils.Role;
@@ -26,7 +29,8 @@ public class ProfessionalUser extends User {
 	private String registrationNumber;
 	private String description;
 	@ManyToMany
-	private List<StandardUser> followers;
+	@JsonIgnore
+	private List<StandardUser> followers = new ArrayList<>();;
 
 	public ProfessionalUser(String name, String surname, String email, String password, Profession profession,
 			String registrationNumber, String description) {
@@ -34,14 +38,6 @@ public class ProfessionalUser extends User {
 		this.profession = profession;
 		this.registrationNumber = registrationNumber;
 		this.description = description;
-//		this.followers = new ArrayList<>();
 		setRole(Role.PROFESSIONAL);
 	}
-
-//	public void followUser(StandardUser standardUser) {
-//		if (!followers.contains(standardUser)) {
-//			followers.add(standardUser);
-//			standardUser.getFollowed().add(this);
-//		}
-//	}
 }

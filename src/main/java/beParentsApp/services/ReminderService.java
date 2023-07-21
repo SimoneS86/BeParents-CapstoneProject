@@ -66,4 +66,15 @@ public class ReminderService {
 
 		reminderRepo.delete(reminder);
 	}
+
+//	 FILTRI AGGIUNTIVI
+//	public Page<Reminder> findRemindersByDate(LocalDate date, int page, int size, String sortBy) {
+//		if (date != null) {
+//			User user = userRepo.findById(userId).orElseThrow(() -> new NotFoundException("User not found"));
+//			Pageable pageable = PageRequest.of(page, size, Sort.by(sortBy));
+//			return reminderRepo.findRemindersByDateAndUser(date, userId, pageable);
+//		} else {
+//			return Page.empty();
+//		}
+//	}
 }

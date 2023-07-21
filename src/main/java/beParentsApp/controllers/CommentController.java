@@ -23,7 +23,7 @@ import beParentsApp.exceptions.NotFoundException;
 import beParentsApp.services.CommentService;
 
 @RestController
-@RequestMapping("/comment")
+@RequestMapping("/api/comment")
 public class CommentController {
 	@Autowired
 	private CommentService commentService;

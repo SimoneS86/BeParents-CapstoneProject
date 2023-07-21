@@ -28,20 +28,11 @@ public class Comment {
 	private LocalDateTime publicationDate;
 
 	@ManyToOne
-	@JsonBackReference
 	private User user;
 
 	@ManyToOne
 	@JsonBackReference
 	private Post post;
-
-//	public Comment(String content, User user, Post post) {
-//		this.publicationDate = LocalDateTime.now();
-//		this.content = content;
-//		this.user = user;
-//		this.post = post;
-//
-//	}
 
 	public Comment(LocalDateTime publicationDate, String content, User user, Post post) {
 		this.publicationDate = publicationDate;

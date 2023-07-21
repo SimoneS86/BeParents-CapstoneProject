@@ -23,7 +23,7 @@ import beParentsApp.exceptions.NotFoundException;
 import beParentsApp.services.PostService;
 
 @RestController
-@RequestMapping("/post")
+@RequestMapping("/api/post")
 public class PostController {
 	@Autowired
 	private PostService postService;
@@ -35,9 +35,15 @@ public class PostController {
 	}
 
 	@GetMapping("")
-	public Page<Post> getPosts(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "10") int size,
+	public Page<Post> getPosts(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "40") int size,
 			@RequestParam(defaultValue = "id") String sortBy) {
 		return postService.findAll(page, size, sortBy);
+	}
+
+	@GetMapping("/professionalUser")
+	public Page<Post> getByProfessionalUser(@RequestParam(defaultValue = "0") int page,
+			@RequestParam(defaultValue = "10") int size, @RequestParam(defaultValue = "id") String sortBy) {
+		return postService.findByProfessionalUser(page, size, sortBy);
 	}
 
 	@GetMapping("/{postId}")

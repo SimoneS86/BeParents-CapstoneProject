@@ -1,9 +1,14 @@
 package beParentsApp.services;
 
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -34,7 +39,33 @@ public class PostService {
 		return postRepo.save(newPost);
 	}
 
+//	public Page<Post> findAll(int page, int size, String sortBy) {
+//		if (size < 0)
+//			size = 0;
+//		if (size > 100)
+//			size = 100;
+//
+//		Pageable pageable = PageRequest.of(page, size, Sort.by(sortBy).descending().and(Sort.by("lastUpdate")));
+//
+//		return postRepo.findAll(pageable);
+//	}
+
 	public Page<Post> findAll(int page, int size, String sortBy) {
+		if (size < 0)
+			size = 0;
+		if (size > 100)
+			size = 100;
+
+		Pageable pageable = PageRequest.of(page, size, Sort.by(sortBy).descending());
+		Page<Post> resultPage = postRepo.findAll(pageable);
+
+		List<Post> content = new ArrayList<>(resultPage.getContent());
+		content.sort(Comparator.comparing(Post::getLastUpdate).reversed());
+
+		return new PageImpl<>(content, pageable, resultPage.getTotalElements());
+	}
+
+	public Page<Post> findByProfessionalUser(int page, int size, String sortBy) {
 		if (size < 0)
 			size = 0;
 		if (size > 100)
@@ -42,7 +73,7 @@ public class PostService {
 
 		Pageable pageable = PageRequest.of(page, size, Sort.by(sortBy));
 
-		return postRepo.findAll(pageable);
+		return postRepo.findByProfessionalUser(pageable);
 	}
 
 	public Post findById(UUID id) throws NotFoundException {
@@ -53,6 +84,7 @@ public class PostService {
 		Post postFound = this.findById(id);
 
 		postFound.setId(id);
+		postFound.setLastUpdate(LocalDateTime.now());
 		postFound.setPublicationDate(pp.getPublicationDate());
 		postFound.setContent(pp.getContent());
 		postFound.setUser(userRepo.findById(pp.getUserId()).orElseThrow(() -> new NotFoundException("User not found")));

@@ -1,0 +1,9 @@
+.navbarFooter{
+    margin: auto;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 30px;
+}
+ul li{
+    list-style-type: none;
+}

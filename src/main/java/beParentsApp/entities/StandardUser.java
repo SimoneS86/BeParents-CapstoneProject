@@ -1,6 +1,9 @@
 package beParentsApp.entities;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import beParentsApp.utils.Role;
 import jakarta.persistence.Entity;
@@ -19,11 +22,11 @@ import lombok.ToString;
 @Table(name = "standardUser")
 public class StandardUser extends User {
 	@ManyToMany
-	private List<ProfessionalUser> followed;
+	@JsonIgnore
+	private List<ProfessionalUser> followed = new ArrayList<>();;
 
 	public StandardUser(String name, String surname, String email, String password) {
 		super(name, surname, email, password);
-//		this.followed = new ArrayList<>();
 		setRole(Role.STANDARD);
 	}
 

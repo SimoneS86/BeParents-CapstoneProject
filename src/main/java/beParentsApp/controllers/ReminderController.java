@@ -23,7 +23,7 @@ import beParentsApp.exceptions.NotFoundException;
 import beParentsApp.services.ReminderService;
 
 @RestController
-@RequestMapping("/reminder")
+@RequestMapping("/api/reminder")
 public class ReminderController {
 	@Autowired
 	private ReminderService reminderService;
@@ -55,5 +55,4 @@ public class ReminderController {
 	public void deleteReminder(@PathVariable UUID reminderId) throws NotFoundException {
 		reminderService.findByIdAndDelete(reminderId);
 	}
-
 }
