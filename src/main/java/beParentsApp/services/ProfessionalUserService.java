@@ -9,6 +9,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import beParentsApp.entities.ProfessionalUser;
 import beParentsApp.entities.StandardUser;
@@ -97,6 +98,23 @@ public class ProfessionalUserService {
 		ProfessionalUser professionalUser = this.findById(id);
 
 		professionalUserRepo.delete(professionalUser);
+	}
+
+	@Transactional
+	public void unFollowStandardUser(UUID standardUserId, UUID professionalUserId) {
+		ProfessionalUser professionalUser = professionalUserRepo.findById(professionalUserId)
+				.orElseThrow(() -> new NotFoundException("ProfessionalUser not found"));
+		StandardUser standardUser = standardUserRepo.findById(standardUserId)
+				.orElseThrow(() -> new NotFoundException("StandardUser not found"));
+
+		// Verifica se l'utente standard sta già seguendo il professionista
+		if (professionalUser.getFollowers().contains(standardUser)) {
+			professionalUser.getFollowers().remove(standardUser);
+			standardUser.getFollowed().remove(professionalUser);
+		}
+
+		standardUserRepo.save(standardUser);
+		professionalUserRepo.save(professionalUser);
 	}
 
 }

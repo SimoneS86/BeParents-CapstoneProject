@@ -18,8 +18,10 @@ import beParentsApp.exceptions.BadRequestException;
 import beParentsApp.exceptions.NotFoundException;
 import beParentsApp.repositories.ProfessionalUserRepository;
 import beParentsApp.repositories.StandardUserRepository;
+import lombok.extern.slf4j.Slf4j;
 
 @Service
+@Slf4j
 public class StandardUserService {
 
 	@Autowired
@@ -94,24 +96,36 @@ public class StandardUserService {
 	}
 
 	@Transactional
-	public void followProfessionalUser(UUID standardUserId, UUID professionalUserId) {
+	public ProfessionalUser followProfessionalUser(UUID standardUserId, UUID professionalUserId) {
 		StandardUser standardUser = standardUserRepo.findById(standardUserId)
 				.orElseThrow(() -> new NotFoundException("StandardUser not found"));
 
 		ProfessionalUser professionalUser = professionalUserRepo.findById(professionalUserId)
 				.orElseThrow(() -> new NotFoundException("ProfessionalUser not found"));
-
 		// Verifica se l'utente standard sta già seguendo il professionista
-		if (standardUser.getFollowed().contains(professionalUser)) {
-			standardUser.getFollowed().remove(professionalUser);
-			professionalUser.getFollowers().remove(standardUser);
-		} else {
+		if (!standardUser.getFollowed().contains(professionalUser)) {
 			standardUser.getFollowed().add(professionalUser);
 			professionalUser.getFollowers().add(standardUser);
 		}
 
 		standardUserRepo.save(standardUser);
-		professionalUserRepo.save(professionalUser);
+		return professionalUserRepo.save(professionalUser);
 	}
 
+	@Transactional
+	public void unFollowProfessionalUser(UUID standardUserId, UUID professionalUserId) {
+		StandardUser standardUser = standardUserRepo.findById(standardUserId)
+				.orElseThrow(() -> new NotFoundException("StandardUser not found"));
+
+		ProfessionalUser professionalUser = professionalUserRepo.findById(professionalUserId)
+				.orElseThrow(() -> new NotFoundException("ProfessionalUser not found"));
+		// Verifica se l'utente standard sta già seguendo il professionista
+		if (standardUser.getFollowed().contains(professionalUser)) {
+			standardUser.getFollowed().remove(professionalUser);
+			professionalUser.getFollowers().remove(standardUser);
+		}
+
+		standardUserRepo.save(standardUser);
+		professionalUserRepo.save(professionalUser);
+	}
 }

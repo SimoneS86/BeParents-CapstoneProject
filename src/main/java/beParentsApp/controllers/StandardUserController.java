@@ -69,9 +69,17 @@ public class StandardUserController {
 	}
 
 	@PostMapping("/{standardUserId}/follow/{professionalUserId}")
-	public ResponseEntity<Void> followProfessionalUser(@PathVariable UUID standardUserId,
+	public ProfessionalUser followProfessionalUser(@PathVariable UUID standardUserId,
 			@PathVariable UUID professionalUserId) {
-		standardUsersService.followProfessionalUser(standardUserId, professionalUserId);
-		return ResponseEntity.ok().build();
+
+		return standardUsersService.followProfessionalUser(standardUserId, professionalUserId);
 	}
+
+	@DeleteMapping("/{standardUserId}/follow/{professionalUserId}")
+	@ResponseStatus(HttpStatus.NO_CONTENT)
+	public void unFollowProfessionalUser(@PathVariable UUID standardUserId, @PathVariable UUID professionalUserId) {
+
+		standardUsersService.unFollowProfessionalUser(standardUserId, professionalUserId);
+	}
+
 }

@@ -9,14 +9,18 @@ const remindersReducer = (state = [], action) => {
     case POST_REMINDER:
       return { ...state, content: [action.payload, ...state.content] };
     case PUT_REMINDER:
-      return state.map((post) => {
-        if (post._id !== action.id) {
-          return post;
-        }
-        return {
-          ...action.payload,
-        };
-      });
+      return {
+        ...state,
+        content: state.content.map((reminder) => {
+          if (reminder.id !== action.id) {
+            return reminder;
+          }
+          return {
+            ...reminder,
+            ...action.payload,
+          };
+        }),
+      };
     case DELETE_REMINDER:
       return { ...state, content: state.content.filter((reminder) => reminder.id !== action.payload) };
     default:

@@ -67,4 +67,11 @@ public class ProfessionalUserController {
 	public void deleteUser(@PathVariable UUID userId) throws NotFoundException {
 		professionalUsersService.findByIdAndDelete(userId);
 	}
+
+	@DeleteMapping("/{standardUserId}/follow/{professionalUserId}")
+	@ResponseStatus(HttpStatus.NO_CONTENT)
+	public void unFollowStandardUser(@PathVariable UUID standardUserId, @PathVariable UUID professionalUserId) {
+
+		professionalUsersService.unFollowStandardUser(standardUserId, professionalUserId);
+	}
 }

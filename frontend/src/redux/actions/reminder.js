@@ -81,7 +81,7 @@ export const postReminder = (userData, body) => {
   };
 };
 
-export const putReminder = (userData, reminderId, body) => {
+export const putReminder = (reminderId, body) => {
   return async (dispatch, getState) => {
     const token = getState().auth.token;
     try {
@@ -91,11 +91,10 @@ export const putReminder = (userData, reminderId, body) => {
           Authorization: `Bearer ${token}`,
           "Content-Type": "application/json",
         },
-        body,
+        body: JSON.stringify(body),
       });
       if (resp.ok) {
         let data = await resp.json();
-        data.user = userData;
         dispatch({ type: PUT_REMINDER, id: reminderId, payload: data });
       } else {
         console.log("error");

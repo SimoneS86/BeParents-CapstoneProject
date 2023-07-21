@@ -15,6 +15,7 @@ import beParentsApp.entities.StandardUser;
 public interface ProfessionalUserRepository extends JpaRepository<ProfessionalUser, UUID> {
 
 	Optional<ProfessionalUser> findByEmail(String email);
+
 	Page<ProfessionalUser> findByFollowers(StandardUser follower, Pageable pageable);
 
 }

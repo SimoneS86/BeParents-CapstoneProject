@@ -156,12 +156,15 @@ const MyTabs = () => {
           <Form>
             <Form.Group>
               <Form.Label>Date</Form.Label>
+              <br></br>
               <DatePicker selected={reminderDate} onChange={handleReminderDateChange} />
             </Form.Group>
             <Form.Group>
+              <br></br>
               <Form.Label>Reminder Text</Form.Label>
               <Form.Control
-                type="text"
+                as="textarea"
+                rows={3}
                 placeholder="Enter reminder text"
                 value={reminderText}
                 onChange={handleReminderTextChange}
