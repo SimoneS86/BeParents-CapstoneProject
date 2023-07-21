@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Tab, Nav, Form, Button, Container, Modal } from "react-bootstrap";
 import DatePicker from "react-datepicker";
-import { AiOutlineEdit } from "react-icons/ai";
-import { MdDeleteOutline } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
 import Reminder from "./Reminder";
 import Post from "./Post";
@@ -14,8 +12,6 @@ import "react-datepicker/dist/react-datepicker.css";
 
 const MyTabs = () => {
   const [activeTab, setActiveTab] = useState("tab1");
-  const [isChecked, setIsChecked] = useState(false);
-  // const [searchTerm, setSearchTerm] = useState("");
   const [content, setContent] = useState("");
   const reminders = useSelector((state) => state.reminders);
   const posts = useSelector((state) => state.posts);
@@ -40,10 +36,6 @@ const MyTabs = () => {
 
   const handleReminderTextChange = (e) => {
     setReminderText(e.target.value);
-  };
-
-  const handleCheckboxChange = (e) => {
-    setIsChecked(e.target.checked);
   };
 
   const handleReminderSubmit = () => {
@@ -106,7 +98,7 @@ const MyTabs = () => {
           <Nav.Link eventKey="tab2">REMINDER</Nav.Link>
         </Nav.Item>
         <Nav.Item>
-          <Nav.Link eventKey="tab3">FOLLOWER</Nav.Link>
+          <Nav.Link eventKey="tab3">{userData && userData.profession ? "FOLLOWERS" : "FOLLOWED"}</Nav.Link>
         </Nav.Item>
       </Nav>
 
