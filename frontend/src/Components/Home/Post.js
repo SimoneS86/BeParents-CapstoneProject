@@ -212,7 +212,7 @@ const Post = ({ post }) => {
                       alt="user pic"
                     />
                     <span>
-                      <h5>{`${comment.user.name} ${comment.user.surname}`}</h5>
+                      <h6>{`${comment.user.name} ${comment.user.surname}`}</h6>
                       {comment.user.profession && <p>{comment.user.profession}</p>}
                     </span>
                   </div>
@@ -229,7 +229,7 @@ const Post = ({ post }) => {
                 {comment.user.id === currentUser.id && (
                   <div style={{ display: "flex", alignItems: "center" }}>
                     <Button
-                      className="bg-transparent mt-1 mb-2"
+                      className="bg-transparent mt-1 mb-2 "
                       style={{
                         borderRadius: "50%",
                         height: "30px",
@@ -242,7 +242,7 @@ const Post = ({ post }) => {
                       <AiOutlineEdit style={{ fontSize: "20px" }} />
                     </Button>
                     <Button
-                      className="bg-transparent mt-1 mb-2"
+                      className="bg-transparent mt-1 mb-2 "
                       style={{
                         borderRadius: "50%",
                         height: "30px",
@@ -287,6 +287,7 @@ const Post = ({ post }) => {
           <Modal.Title>Edit Post</Modal.Title>
         </Modal.Header>
         <Modal.Body>
+          <Form.Label>Content</Form.Label>
           <Form.Control
             as="textarea"
             rows={3}
