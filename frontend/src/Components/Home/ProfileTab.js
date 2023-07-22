@@ -132,8 +132,9 @@ const MyTabs = () => {
 
         {/* tab 3 content here ========= */}
         <Tab.Pane eventKey="tab3">
-          <Container className="">
-            {followElements.content &&
+          <Container className="bg-transparent">
+            {followElements &&
+              followElements.content &&
               followElements.content.map((follow) => <FollowElement key={follow.id} follow={follow} />)}
           </Container>
         </Tab.Pane>
