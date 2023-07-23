@@ -15,7 +15,8 @@ const VisitedProfile = () => {
   const loggedInUser = useSelector((state) => state.auth.userData);
   const followedUsers = useSelector((state) => state.followElements.content);
   const hasProfession = !loggedInUser.profession;
-  const isFollowed = followedUsers.some((user) => user.id === userId);
+  // const isFollowed = followedUsers.some((user) => user.id === userId);
+  const isFollowed = (followedUsers !== null ? followedUsers : []).some((user) => user.id === userId);
 
   const showFollowButton = hasProfession && !isFollowed && profileElements.profession;
   const showUnfollowButton = hasProfession && isFollowed && profileElements.profession;
@@ -29,14 +30,6 @@ const VisitedProfile = () => {
     dispatch(getFollowedByStndId(loggedInUser.id));
   }, []);
 
-  // const handleFollowClick = () => {
-  //   // Chiama la funzione di azione followUser e passa l'userId del profilo visitato
-  //   dispatch(followUser(userId)); // Assicurati di avere l'userId disponibile nella struttura del tuo oggetto profileElements
-  // };
-  // const handleUnFollowClick = () => {
-  //   // Chiama la funzione di azione followUser e passa l'userId del profilo visitato
-  //   dispatch(unFollowUser(userId)); // Assicurati di avere l'userId disponibile nella struttura del tuo oggetto profileElements
-  // };
   if (!profileElements) {
     return <div>Loading...</div>;
   }
@@ -68,36 +61,42 @@ const VisitedProfile = () => {
             alignItems: "center",
           }}>
           {showFollowButton && (
-            <Button
-              className="bg-transparent"
-              style={{
-                borderRadius: "50%",
-                height: "50px",
-                width: "50px",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-              onClick={() => dispatch(followUser(userId))}>
-              <SlUserFollow style={{ fontSize: "20px" }} />
-            </Button>
+            <>
+              <Button
+                className="bg-transparent"
+                style={{
+                  borderRadius: "50%",
+                  height: "50px",
+                  width: "50px",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+                onClick={() => dispatch(followUser(userId))}>
+                <SlUserFollow style={{ fontSize: "20px" }} />
+              </Button>
+              <h3 style={{ marginLeft: "10px", color: "white" }}>Follow</h3>
+            </>
           )}
 
           {showUnfollowButton && (
-            <Button
-              className="bg-transparent"
-              style={{
-                borderRadius: "50%",
-                height: "50px",
-                width: "50px",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-              onClick={() => dispatch(unFollowUser(userId))}>
-              {/* Icona per indicare la rimozione della relazione di "following" */}
-              <SlUserUnfollow style={{ fontSize: "20px" }} />
-            </Button>
+            <>
+              <Button
+                className="bg-transparent"
+                style={{
+                  borderRadius: "50%",
+                  height: "50px",
+                  width: "50px",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+                onClick={() => dispatch(unFollowUser(userId))}>
+                {/* Icona per indicare la rimozione della relazione di "following" */}
+                <SlUserUnfollow style={{ fontSize: "20px" }} />
+              </Button>
+              <h3 style={{ marginLeft: "10px", color: "white" }}>Unfollow</h3>
+            </>
           )}
         </div>
       </Container>

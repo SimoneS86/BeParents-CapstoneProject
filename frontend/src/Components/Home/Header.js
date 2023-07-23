@@ -1,19 +1,14 @@
-import React, { useEffect } from "react";
 import logo from "./../../img/logo2.jpg";
+import defaultUserPic from "./../../img/default-avatar.jpg";
 import "./Home.css";
 import { Navbar, Nav, NavDropdown } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../redux/actions/auth";
-import { getUserById } from "../../redux/actions/profileElement";
 
 const Header = () => {
   const user = useSelector((state) => state.auth.userData);
   const dispatch = useDispatch();
-
-  // useEffect(() => {
-  //   dispatch(getUserById());
-  // }, []);
 
   return (
     <>
@@ -33,7 +28,7 @@ const Header = () => {
               <img
                 className="thumbnail-image"
                 style={{ width: "35px", height: "35px", borderRadius: "50%" }}
-                src={user && user.picture}
+                src={user && user.picture ? user.picture : defaultUserPic}
                 alt="user pic"
               />
             </Link>
